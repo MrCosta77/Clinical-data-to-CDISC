@@ -46,17 +46,22 @@ data sdtm.dm;
     /* Race (Uppercase, per standard) */
     RACE = upcase(RACE_TXT);
     
-    /* --------------------------------------------------------
+/* --------------------------------------------------------
        ISO 8601 DATE CONVERSION (YYYY-MM-DD)
+       (Dynamic type-checking to prevent proc import errors)
        -------------------------------------------------------- */
     
-    /* BRTH_DT comes from Python as DD/MM/YYYY */
-    _brth_num = input(BRTH_DT, ddmmyy10.);
-    BRTHDTC   = put(_brth_num, yymmddd10.);
+    /* Handle Birth Date (BRTH_DT) */
+    if vtype(BRTH_DT) = 'C' then _brth_num = input(strip(BRTH_DT), anydtdte.);
+    else _brth_num = BRTH_DT;
     
-    /* ICF_DAT comes from Python as YYYY-MM-DD */
-    _rfic_num = input(ICF_DAT, yymmdd10.);
-    RFICDTC   = put(_rfic_num, yymmddd10.);
+    if not missing(_brth_num) then BRTHDTC = put(_brth_num, is8601da.);
+    
+    /* Handle Informed Consent Date (ICF_DAT) */
+    if vtype(ICF_DAT) = 'C' then _rfic_num = input(strip(ICF_DAT), anydtdte.);
+    else _rfic_num = ICF_DAT;
+    
+    if not missing(_rfic_num) then RFICDTC = put(_rfic_num, is8601da.);
     
     /* Keep only variables that belong to the SDTM standard */
     keep STUDYID DOMAIN USUBJID SUBJID SEX RACE BRTHDTC RFICDTC;
