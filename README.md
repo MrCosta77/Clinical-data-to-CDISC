@@ -4,25 +4,32 @@ An end-to-end clinical data engineering and statistical programming pipeline. Th
 
 ## 🚀 Core Engineering Philosophy
 This project strictly adheres to pharmaceutical industry standards, focusing on determinism, traceability, and clinical validation:
-1. **Regulatory Compliance:** Output datasets conform to the CDISC Implementation Guides (SDTMIG).
+1. **Regulatory Compliance:** Output datasets conform to the CDISC Implementation Guides (SDTMIG and ADaMIG).
 2. **Defensive SAS Programming:** Extensive use of dynamic type-checking (`vtype`), `anydtdte` informats, and robust ISO 8601 date conversions (`is8601da.`) to prevent data loss from unstructured EDC formats.
-3. **Macro-Driven Architecture:** Reusable SAS macros for standardized derivations (e.g., vital signs unit conversions, baseline flagging).
+3. **Advanced Derivations:** Complex logic for ongoing clinical events, baseline flagging (`ABLFL`), and temporal treatment-emergent derivations (`TRTEMFL`).
 
 ## 📂 Repository Architecture
 The structure mirrors a standard Contract Research Organization (CRO) environment:
-* `data/raw/` - Simulated raw EDC data (Demographics, Vitals, Adverse Events).
-* `data/sdtm/` - Standardized SDTM datasets (`.sas7bdat`).
-* `data/adam/` - Statistical analysis datasets (Pending Phase 2).
-* `programs/` - Core SAS mapping scripts (e.g., `sdtm_dm.sas`).
-* `macros/` - Reusable SAS macro library.
-* `scripts/` - Python utilities used strictly for generating synthetic EDC clinical trials data.
+* `data/raw/` - Simulated raw EDC data containing intentional structural noise.
+* `data/sdtm/` - Standardized SDTM datasets (DM, VS, AE, EX, LB).
+* `data/adam/` - Statistical analysis datasets (ADSL, ADAE, ADVS).
+* `programs/` - Core SAS mapping scripts.
+* `scripts/` - Python utilities used strictly for generating synthetic EDC clinical trial data.
 
-## 🛠️ Current Development Status
-- [x] **Phase 1.1:** Data generation and environmental setup (Python).
-- [x] **Phase 1.2:** SDTM DM (Demographics) domain mapping and ISO 8601 alignment.
-- [ ] **Phase 1.3:** SDTM VS (Vital Signs) & AE (Adverse Events) domains.
-- [ ] **Phase 2.0:** ADaM derivations (ADSL, ADVS).
+## 🛠️ Development Milestones
+
+### Phase 1: SDTM Transformation (Completed)
+- **DM (Demographics):** Core subject identifiers and ISO 8601 date standardizations.
+- **VS (Vital Signs):** Horizontal-to-vertical unpivoting (transposition) using explicit OUTPUT statements.
+- **AE (Adverse Events):** Sequential numbering (`AESEQ`) and logic for handling ongoing events without end dates.
+- **EX (Exposure):** Study drug administration mapping.
+- **LB (Laboratory):** Conditional dictionary mapping (`select/when`) and rigorous SI unit standardization.
+
+### Phase 2: ADaM Derivation (Completed)
+- **ADSL (Subject-Level):** The statistical backbone. Derivation of numeric analysis dates, demographic math (AGE), Treatment Duration (`TRTDURD`), and Safety/ITT Population Flags (`SAFFL`).
+- **ADAE (Adverse Events Analysis):** Temporal derivations to identify Treatment-Emergent Adverse Events (`TRTEMFL`) and Analysis Relative Days (`ASTDY`).
+- **ADVS (Vital Signs Analysis):** Advanced Baseline derivations (`ABLFL`), resolving retained PDV (Program Data Vector) edge cases, and calculating Change from Baseline (`CHG`).
 
 ## 💻 Tech Stack
-* **SAS (Base & Macro Language):** Core analytical engine for SDTM/ADaM derivations.
-* **Python (Pandas):** Used exclusively for deterministic EDC clinical data simulation.
+* **SAS (Base Language):** Core analytical engine for deterministic SDTM/ADaM derivations.
+* **Python (Pandas):** Used exclusively to simulate the data quality issues typically found in real-world EDC systems.
