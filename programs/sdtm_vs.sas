@@ -1,8 +1,7 @@
 /*******************************************************************************
-Program Name: sdtm_ae.sas
-Description:  Mapping of raw EDC data to the SDTM AE (Adverse Events) domain.
-              Demonstrates derivation of Sequence Numbers (AESEQ), dictionary 
-              mapping placeholders, and handling of ongoing clinical events.
+Program Name: sdtm_vs.sas
+Description:  Mapping of raw EDC data to the SDTM VS (Vital Signs) domain.
+              Demonstrates horizontal-to-vertical unpivoting and unit mapping.
 *******************************************************************************/
 
 %let project_path = /home/u64384931/Clinical-data-to-cdisc;
@@ -11,89 +10,97 @@ libname raw "&project_path./data/raw";
 libname sdtm "&project_path./data/sdtm";
 
 
-/* 1. IMPORT RAW ADVERSE EVENTS */
-proc import datafile="&project_path./data/raw/raw_ae.csv"
-    out=work.raw_ae
+/* 1. IMPORT RAW VITALS */
+proc import datafile="&project_path./data/raw/raw_vitals.csv"
+    out=work.raw_vs
     dbms=csv
     replace;
     getnames=yes;
 run;
 
 
-/* 2. CORE TRANSFORMATION & DERIVATION */
-data work.ae_mapped;
-    set work.raw_ae;
-    length AETERM AEDECOD $60 AEREL $15 AESEV $10 AEOUT $30;
+/* 2. HORIZONTAL TO VERTICAL TRANSFORMATION (UNPIVOT) */
+data work.vs_vertical;
+    set work.raw_vs;
     
+    /* Pre-define lengths to avoid truncation during the OUTPUT loops */
+    length VSTESTCD $8 VSTEST $40 VSORRESU VSSTRESU $20 VSORRES $200;
+
     /* Core Identifiers */
     STUDYID = "CDISC-01";
-    DOMAIN  = "AE";
-    USUBJID = catx("-", STUDYID, ID); /* Linking Raw ID to CDISC USUBJID */
-    
+    DOMAIN  = "VS";
+    USUBJID = catx("-", STUDYID, PT_ID); /* Linking Raw PT_ID to CDISC USUBJID */
+
     /* --------------------------------------------------------
-       EVENT TERMINOLOGY & ATTRIBUTES
+       ISO 8601 DATE CONVERSION
        -------------------------------------------------------- */
-    AETERM = strip(AE_TERM);
+    if vtype(VS_DATE) = 'C' then _vs_num = input(strip(VS_DATE), anydtdte.);
+    else _vs_num = VS_DATE;
     
-    /* In a real scenario, AETERM would be mapped to AEDECOD using MedDRA.
-       For this portfolio, we mimic the dictionary translation. */
-    AEDECOD = upcase(AETERM);
-    
-    /* Severity */
-    AESEV = upcase(strip(SEV));
-    
-    /* Causality / Relationship to Study Drug */
-    if upcase(strip(RELATED)) = 'Y' then AEREL = 'RELATED';
-    else if upcase(strip(RELATED)) = 'N' then AEREL = 'NOT RELATED';
-    else AEREL = 'UNKNOWN';
-    
+    if not missing(_vs_num) then VSDTC = put(_vs_num, is8601da.);
+
     /* --------------------------------------------------------
-       ISO 8601 DATE CONVERSION & OUTCOME DERIVATION
+       EXPLICIT OUTPUT STATEMENTS (CREATING MULTIPLE ROWS PER SUBJECT)
        -------------------------------------------------------- */
-    /* Start Date */
-    if vtype(START) = 'C' then _start_num = input(strip(START), anydtdte.);
-    else _start_num = START;
-    
-    if not missing(_start_num) then AESTDTC = put(_start_num, is8601da.);
-    
-    /* End Date & Outcome Derivation (Handling Ongoing Events) */
-    if vtype(END) = 'C' then _end_num = input(strip(END), anydtdte.);
-    else _end_num = END;
-    
-    if not missing(_end_num) then do;
-        AEENDTC = put(_end_num, is8601da.);
-        AEOUT   = 'RECOVERED/RESOLVED';
-    end;
-    else do;
-        /* If there is no end date, the AE is considered ongoing */
-        AEENDTC = "";
-        AEOUT   = 'NOT RECOVERED/NOT RESOLVED';
+       
+    /* 1. Systolic Blood Pressure */
+    if not missing(SYS_BP) then do;
+        VSTESTCD = "SYSBP";
+        VSTEST   = "Systolic Blood Pressure";
+        VSORRES  = strip(put(SYS_BP, best.)); /* Original Result as Character */
+        VSSTRESN = SYS_BP;                    /* Standardized Result as Numeric */
+        VSORRESU = "mmHg";
+        VSSTRESU = "mmHg";
+        output; /* Creates a row */
     end;
 
-    keep STUDYID DOMAIN USUBJID AETERM AEDECOD AESEV AEREL AESTDTC AEENDTC AEOUT;
+    /* 2. Diastolic Blood Pressure */
+    if not missing(DIA_BP) then do;
+        VSTESTCD = "DIABP";
+        VSTEST   = "Diastolic Blood Pressure";
+        VSORRES  = strip(put(DIA_BP, best.));
+        VSSTRESN = DIA_BP;
+        VSORRESU = "mmHg";
+        VSSTRESU = "mmHg";
+        output; /* Creates a row */
+    end;
+
+    /* 3. Heart Rate */
+    if not missing(HR_BPM) then do;
+        VSTESTCD = "HR";
+        VSTEST   = "Heart Rate";
+        VSORRES  = strip(put(HR_BPM, best.));
+        VSSTRESN = HR_BPM;
+        VSORRESU = "beats/min";
+        VSSTRESU = "beats/min";
+        output; /* Creates a row */
+    end;
+
+    /* 4. Weight */
+    if not missing(WEIGHT_KG) then do;
+        VSTESTCD = "WEIGHT";
+        VSTEST   = "Weight";
+        VSORRES  = strip(put(WEIGHT_KG, best.));
+        VSSTRESN = WEIGHT_KG;
+        VSORRESU = "kg";
+        VSSTRESU = "kg";
+        output; /* Creates a row */
+    end;
+
+    /* Keep only SDTM compliant variables */
+    keep STUDYID DOMAIN USUBJID VISIT VSDTC VSTESTCD VSTEST VSORRES VSORRESU VSSTRESN VSSTRESU;
 run;
 
 
-/* 3. GENERATE SEQUENCE NUMBER (AESEQ) */
-/* Sort by Subject and Start Date first to ensure chronological sequence */
-proc sort data=work.ae_mapped;
-    by USUBJID AESTDTC;
-run;
-
-/* Use BY-group processing to create the Sequence Number */
-data sdtm.ae;
-    set work.ae_mapped;
-    by USUBJID;
-    
-    /* Retain and increment a counter for each Subject */
-    if first.USUBJID then AESEQ = 1;
-    else AESEQ + 1;
+/* 3. SORTING ACCORDING TO CDISC SDTMIG STANDARDS */
+proc sort data=work.vs_vertical out=sdtm.vs;
+    by USUBJID VSDTC VSTESTCD;
 run;
 
 
 /* 4. VISUAL AUDIT */
-title "AE Domain Audit (Adverse Events with Ongoing Logic)";
-proc print data=sdtm.ae(obs=12);
-    var USUBJID AESEQ AETERM AESEV AEREL AESTDTC AEENDTC AEOUT;
+title "VS Domain Audit (Unpivoted Format)";
+proc print data=sdtm.vs(obs=12);
+    var USUBJID VISIT VSDTC VSTESTCD VSSTRESN VSSTRESU;
 run;
 title;
