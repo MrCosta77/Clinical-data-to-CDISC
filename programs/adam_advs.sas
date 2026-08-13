@@ -47,7 +47,6 @@ run;
 
 
 /* 2. IDENTIFY BASELINE RECORD */
-/* Baseline is typically the last non-missing assessment on or before the first dose */
 proc sort data=work.advs_draft out=work.advs_base_candidates;
     by USUBJID PARAMCD ASTDT;
     where ASTDT <= TRTSDT and not missing(AVAL);
@@ -57,18 +56,16 @@ data work.base_flags;
     set work.advs_base_candidates;
     by USUBJID PARAMCD;
     
-    /* The last record before or on treatment start is the baseline */
     if last.PARAMCD then do;
-        ABLFL = 'Y';
         BASE = AVAL;
+        BASE_DT = ASTDT; /* Guardar a data exata da linha de base */
+        output;
     end;
-    
-    if ABLFL = 'Y';
-    keep USUBJID PARAMCD BASE ABLFL;
+    keep USUBJID PARAMCD BASE BASE_DT;
 run;
 
 
-/* 3. MERGE BASELINE BACK TO ALL RECORDS AND CALCULATE CHANGE (CHG) */
+/* 3. MERGE BASELINE BACK AND CALCULATE FLAGS/CHANGE */
 proc sort data=work.advs_draft;
     by USUBJID PARAMCD;
 run;
@@ -78,10 +75,16 @@ data adam.advs;
     by USUBJID PARAMCD;
     if a;
 
-    /* Calculate Change from Baseline */
+    /* 1. Atribuir ABLFL apenas à visita correspondente */
+    if ASTDT = BASE_DT then ABLFL = 'Y';
+    else ABLFL = '';
+
+    /* 2. Calculate Change from Baseline */
     if not missing(AVAL) and not missing(BASE) then do;
         CHG = AVAL - BASE;
     end;
+    
+    drop BASE_DT;
 run;
 
 /* Re-sort for final presentation */
@@ -91,8 +94,8 @@ run;
 
 
 /* 4. VISUAL AUDIT */
-title "ADVS Audit - Vital Signs with Baseline and Change";
-proc print data=adam.advs(obs=12);
-    var USUBJID AVISIT PARAMCD AVAL BASE CHG ABLFL ASTDY;
+title "ADVS Audit - Vital Signs Baseline and Change Analysis";
+proc print data=adam.advs(obs=15);
+    var USUBJID PARAMCD AVISIT ASTDT TRTSDT AVAL BASE CHG ABLFL;
 run;
 title;
