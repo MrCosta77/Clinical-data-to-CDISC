@@ -1,0 +1,79 @@
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+import random
+import os
+
+def generate_extras():
+    print("🧪 Reading original population and generating new domains...")
+    
+    try:
+        df_dm = pd.read_csv('data/raw/raw_demog.csv')
+    except FileNotFoundError:
+        print("❌ Error: Could not find data/raw/raw_demog.csv. Please run the first script first.")
+        return
+
+    ex_records = []
+    lb_records = []
+    
+    lab_tests = ['Glucose', 'Hemoglobin', 'ALT', 'AST']
+    
+    for _, row in df_dm.iterrows():
+        subj_id = row['SUBJ_ID']
+        # Use consent date as the baseline for events
+        try:
+            start_base = datetime.strptime(row['ICF_DAT'], '%Y-%m-%d')
+        except:
+            start_base = datetime(2023, 1, 15) # Fallback
+
+        # 1. GENERATE EXPOSURE (Study Drug)
+        trt_arm = random.choice(['Placebo', 'Active Drug 50mg'])
+        dose_start = start_base + timedelta(days=random.randint(1, 5))
+        # 15% of patients drop out early
+        days_on_drug = random.randint(10, 30) if random.random() < 0.15 else 84 
+        dose_end = dose_start + timedelta(days=days_on_drug)
+        
+        ex_records.append({
+            'PATIENT': subj_id,
+            'TREATMENT': trt_arm,
+            'DOSE': 50 if trt_arm == 'Active Drug 50mg' else 0,
+            'UNIT': 'mg',
+            'START_DATE': dose_start.strftime('%d/%m/%Y'),
+            'END_DATE': dose_end.strftime('%d/%m/%Y') if random.random() > 0.05 else '' # 5% missing end date
+        })
+
+        # 2. GENERATE LABORATORY (3 Visits)
+        for visit_num in [1, 2, 3]:
+            lab_date = start_base + timedelta(days=30 * (visit_num - 1) + random.randint(-3, 3))
+            
+            for test in lab_tests:
+                # Generate values with some noise in units
+                if test == 'Glucose':
+                    res = round(random.uniform(70.0, 120.0), 1)
+                    unit = random.choice(['mg/dL', 'MG/DL'])
+                elif test == 'Hemoglobin':
+                    res = round(random.uniform(11.0, 16.5), 1)
+                    unit = 'g/dL'
+                else: # ALT / AST
+                    res = random.randint(10, 45)
+                    unit = 'U/L'
+                    
+                lb_records.append({
+                    'SUBJ': subj_id,
+                    'VISIT_NAM': f'Visit {visit_num}',
+                    'LAB_DAT': lab_date.strftime('%Y-%m-%d'),
+                    'TEST_NAME': test,
+                    'RESULT': res,
+                    'UNIT': unit
+                })
+
+    # Save files
+    pd.DataFrame(ex_records).to_csv('data/raw/raw_exposure.csv', index=False)
+    pd.DataFrame(lb_records).to_csv('data/raw/raw_lab.csv', index=False)
+    
+    print("✅ Success! Extra files generated in the 'data/raw/' folder:")
+    print(f" - raw_exposure.csv ({len(ex_records)} records)")
+    print(f" - raw_lab.csv ({len(lb_records)} records)")
+
+if __name__ == "__main__":
+    generate_extras()
