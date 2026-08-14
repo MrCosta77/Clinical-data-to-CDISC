@@ -11,22 +11,28 @@ START_DATE = datetime(2023, 1, 1)
 
 def generate_patients():
     patients = []
+    arms = ['Placebo', 'Active Drug 50mg']
     for i in range(1, NUM_PATIENTS + 1):
         site = random.choice(SITES)
         subject_id = f"{site}-{i:03d}"
         
-        # Idades realistas para o estudo de Alzheimer (65-85)
         age_days = random.randint(65*365, 85*365)
         dob = START_DATE - timedelta(days=age_days)
         consent_date = START_DATE + timedelta(days=random.randint(0, 30))
         
+        # Simulating Enrollment vs Randomization (10% Screen Failure)
+        is_randomized = random.random() > 0.10 
+        planned_arm = random.choice(arms) if is_randomized else 'Not Randomized'
+        
         patients.append({
             'SUBJ_ID': subject_id,
             'SITE': site,
-            'BRTH_DT': dob.strftime('%d/%m/%Y'), # Formato DD/MM/YYYY (comum na Europa, precisa ser limpo no SAS)
-            'GENDER': random.choice(['M', 'F', 'Male', 'Female']), # Inconsistência intencional
+            'BRTH_DT': dob.strftime('%d/%m/%Y'),
+            'GENDER': random.choice(['M', 'F', 'Male', 'Female']),
             'RACE_TXT': random.choices(['White', 'Black', 'Asian', 'Other'], weights=[0.7, 0.15, 0.1, 0.05])[0],
-            'ICF_DAT': consent_date.strftime('%Y-%m-%d') # Formato ISO misturado
+            'ICF_DAT': consent_date.strftime('%Y-%m-%d'),
+            'RANDOMIZED_ARM': planned_arm,
+            'ENROLLED': 'Y'
         })
     return pd.DataFrame(patients)
 
