@@ -12,5 +12,18 @@ This project is designed to showcase clinical data engineering, defensive SAS pr
 ## 📂 Target Architecture
 The project is evolving towards a metadata-driven ETL pipeline with integrated Quality Control (QC):
 
-```text
 RAW EDC ──▶ Data Cleaning ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS) ──▶ QC Framework
+
+## 🛠️ Development Milestones
+
+### Phase 1: SDTM Transformation
+- **DM:** Core subject identifiers, ISO 8601 date standardizations, and Randomization Arms.
+- **VS:** Horizontal-to-vertical unpivoting (wide to long) using explicit OUTPUT statements.
+- **AE:** Sequential numbering (`AESEQ`) and handling of ongoing events without end dates.
+- **EX:** Study drug administration mapping.
+- **LB:** Conditional dictionary mapping and unit representation standardization.
+
+### Phase 2: ADaM Derivation
+- **ADSL (Subject-Level):** Derivation of numeric analysis dates, demographic math (AGE), Treatment Duration (`TRTDURD`), and separation of Planned vs. Actual treatments (`TRT01P` vs `TRT01A`).
+- **ADAE (Adverse Events Analysis):** Temporal derivations to identify Treatment-Emergent Adverse Events (`TRTEMFL`).
+- **ADVS (Vital Signs Analysis):** Advanced Baseline derivations (`ABLFL`) resolving retained PDV memory, and Change from Baseline (`CHG`).
