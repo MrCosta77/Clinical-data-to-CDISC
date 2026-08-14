@@ -24,6 +24,7 @@ run;
 /* 3. TRANSFORMATION AND SDTM MAPPING */
 data sdtm.dm;
     set work.raw_dm;
+    length ARM $20 ARMCD $8;
     
     /* Study Identifier Variables (Required) */
     STUDYID = "CDISC-01";
@@ -46,6 +47,22 @@ data sdtm.dm;
     /* Race (Uppercase, per standard) */
     RACE = upcase(RACE_TXT);
     
+    /* --------------------------------------------------------
+       TRIAL DESIGN VARIABLES (ARM, ARMCD)
+       -------------------------------------------------------- */
+    /* Mapping the Planned Arm from the EDC system */
+    if strip(RANDOMIZED_ARM) = 'Not Randomized' then do;
+        ARM = 'SCREEN FAILURE';
+        ARMCD = 'SCRNFAIL';
+    end;
+    else if strip(RANDOMIZED_ARM) = 'Placebo' then do;
+        ARM = 'Placebo';
+        ARMCD = 'PBO';
+    end;
+    else if strip(RANDOMIZED_ARM) = 'Active Drug 50mg' then do;
+        ARM = 'Active Drug 50mg';
+        ARMCD = 'ACT50';
+    end;
 /* --------------------------------------------------------
        ISO 8601 DATE CONVERSION (YYYY-MM-DD)
        (Dynamic type-checking to prevent proc import errors)
@@ -64,13 +81,13 @@ data sdtm.dm;
     if not missing(_rfic_num) then RFICDTC = put(_rfic_num, is8601da.);
     
     /* Keep only variables that belong to the SDTM standard */
-    keep STUDYID DOMAIN USUBJID SUBJID SEX RACE BRTHDTC RFICDTC;
+    keep STUDYID DOMAIN USUBJID SUBJID SEX RACE BRTHDTC RFICDTC ARM ARMCD;
 run;
 
 
 /* 4. VISUAL AUDIT (Quality Check) */
 title "DM Domain Audit (First 10 Records)";
 proc print data=sdtm.dm(obs=10);
-    var STUDYID USUBJID SEX RACE BRTHDTC RFICDTC;
+    var STUDYID USUBJID SEX RACE BRTHDTC RFICDTC ARM ARMCD;
 run;
 title;

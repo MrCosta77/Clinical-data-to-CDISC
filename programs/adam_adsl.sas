@@ -39,24 +39,26 @@ data work.adsl_draft;
     USUBJID = USUBJID;
     SUBJID  = SUBJID;
 
-    /* --------------------------------------------------------
+   /* --------------------------------------------------------
        TREATMENT VARIABLES & POPULATION FLAGS
        -------------------------------------------------------- */
-    if b then do;
-        TRT01P = EXTRT; /* Planned Treatment */
-        TRT01A = EXTRT; /* Actual Treatment */
-    end;
-    else do;
-        TRT01P = "UNPLANNED";
-        TRT01A = "NOT TREATED";
-    end;
+    
+    /* 1. Planned Treatment (TRT01P) comes from DM Randomization */
+    if ARMCD ne 'SCRNFAIL' then TRT01P = ARM;
+    else TRT01P = 'UNPLANNED';
 
-    /* Intent-To-Treat (ITT) Flag: All randomized subjects */
-    ITTFL = "Y";
+    /* 2. Actual Treatment (TRT01A) comes from Exposure (EX) */
+    if b and not missing(EXTRT) then TRT01A = EXTRT;
+    else TRT01A = "NOT TREATED";
 
-    /* Safety Population (SAFFL) Flag: Took at least one dose */
+    /* 3. Intent-To-Treat (ITT) Flag: Only Randomized subjects */
+    if ARMCD ne 'SCRNFAIL' then ITTFL = "Y";
+    else ITTFL = "N";
+
+    /* 4. Safety Population (SAFFL) Flag: Took at least one dose */
     if not missing(EXSTDTC) then SAFFL = "Y";
     else SAFFL = "N";
+
 
     /* --------------------------------------------------------
        NUMERIC DATE DERIVATIONS (For Statistical Math)
