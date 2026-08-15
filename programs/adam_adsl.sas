@@ -7,6 +7,7 @@ Description:  Derivation of ADSL (Subject-Level Analysis Dataset).
 
 %let project_path = /home/u64384931/Clinical-data-to-cdisc;
 
+libname raw "&project_path./data/raw";
 libname sdtm "&project_path./data/sdtm";
 libname adam "&project_path./data/adam";
 
@@ -94,6 +95,6 @@ run;
 /* 5. VISUAL AUDIT */
 title "ADSL Audit - Subject Level Analysis Dataset";
 proc print data=adam.adsl(obs=10);
-    var USUBJID AGE SEX TRT01A TRTSDT TRTEDT TRTDURD SAFFL;
+    var USUBJID TRT01P TRT01A ITTFL SAFFL AGE;
 run;
 title;

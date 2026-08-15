@@ -27,3 +27,23 @@ RAW EDC ──▶ Data Cleaning ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ AD
 - **ADSL (Subject-Level):** Derivation of numeric analysis dates, demographic math (AGE), Treatment Duration (`TRTDURD`), and separation of Planned vs. Actual treatments (`TRT01P` vs `TRT01A`).
 - **ADAE (Adverse Events Analysis):** Temporal derivations to identify Treatment-Emergent Adverse Events (`TRTEMFL`).
 - **ADVS (Vital Signs Analysis):** Advanced Baseline derivations (`ABLFL`) resolving retained PDV memory, and Change from Baseline (`CHG`).
+
+## ⚙️ How to Reproduce this Pipeline
+
+To run this project locally or in SAS OnDemand for Academics (SODA):
+
+1. **Clone the repository:**
+   `git clone [https://github.com/your-username/Clinical-data-to-cdisc.git](https://github.com/your-username/Clinical-data-to-cdisc.git)`
+
+2. **Generate the Raw Data:**
+   Run the Python engine to simulate the imperfect clinical data extraction.
+   `python scripts/generate_raw_edc.py`
+
+3. **Configure the SAS Environment:**
+   * Upload the repository to your SAS environment.
+   * Open `programs/00_setup.sas`.
+   * Modify the `%let project_path = ...` variable to match your root directory.
+   * Run `00_setup.sas` to initialize the global libraries (`raw`, `sdtm`, `adam`).
+
+4. **Execute the Pipeline:**
+   Run the SDTM domains sequentially, followed by the ADaM domains.

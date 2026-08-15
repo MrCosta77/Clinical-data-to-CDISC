@@ -8,6 +8,7 @@ Description:  Mapping of raw EDC data to the SDTM VS (Vital Signs) domain.
 
 libname raw "&project_path./data/raw";
 libname sdtm "&project_path./data/sdtm";
+libname adam "&project_path./data/adam";
 
 
 /* 1. IMPORT RAW VITALS */
@@ -20,38 +21,28 @@ run;
 
 
 /* 2. HORIZONTAL TO VERTICAL TRANSFORMATION (UNPIVOT) */
-data work.vs_vertical;
+data work.vs_mapped;
     set work.raw_vs;
     
-    /* Pre-define lengths to avoid truncation during the OUTPUT loops */
     length VSTESTCD $8 VSTEST $40 VSORRESU VSSTRESU $20 VSORRES $200;
 
-    /* Core Identifiers */
     STUDYID = "CDISC-01";
     DOMAIN  = "VS";
-    USUBJID = catx("-", STUDYID, PT_ID); /* Linking Raw PT_ID to CDISC USUBJID */
+    USUBJID = catx("-", STUDYID, PT_ID); 
 
-    /* --------------------------------------------------------
-       ISO 8601 DATE CONVERSION
-       -------------------------------------------------------- */
     if vtype(VS_DATE) = 'C' then _vs_num = input(strip(VS_DATE), anydtdte.);
     else _vs_num = VS_DATE;
-    
     if not missing(_vs_num) then VSDTC = put(_vs_num, is8601da.);
 
-    /* --------------------------------------------------------
-       EXPLICIT OUTPUT STATEMENTS (CREATING MULTIPLE ROWS PER SUBJECT)
-       -------------------------------------------------------- */
-       
     /* 1. Systolic Blood Pressure */
     if not missing(SYS_BP) then do;
         VSTESTCD = "SYSBP";
         VSTEST   = "Systolic Blood Pressure";
-        VSORRES  = strip(put(SYS_BP, best.)); /* Original Result as Character */
-        VSSTRESN = SYS_BP;                    /* Standardized Result as Numeric */
+        VSORRES  = strip(put(SYS_BP, best.));
+        VSSTRESN = SYS_BP;
         VSORRESU = "mmHg";
         VSSTRESU = "mmHg";
-        output; /* Creates a row */
+        output;
     end;
 
     /* 2. Diastolic Blood Pressure */
@@ -62,18 +53,18 @@ data work.vs_vertical;
         VSSTRESN = DIA_BP;
         VSORRESU = "mmHg";
         VSSTRESU = "mmHg";
-        output; /* Creates a row */
+        output;
     end;
 
-    /* 3. Heart Rate */
+    /* 3. Heart Rate -> CDISC Official: PULSE */
     if not missing(HR_BPM) then do;
-        VSTESTCD = "HR";
-        VSTEST   = "Heart Rate";
+        VSTESTCD = "PULSE";
+        VSTEST   = "Pulse Rate";
         VSORRES  = strip(put(HR_BPM, best.));
         VSSTRESN = HR_BPM;
         VSORRESU = "beats/min";
         VSSTRESU = "beats/min";
-        output; /* Creates a row */
+        output;
     end;
 
     /* 4. Weight */
@@ -84,23 +75,29 @@ data work.vs_vertical;
         VSSTRESN = WEIGHT_KG;
         VSORRESU = "kg";
         VSSTRESU = "kg";
-        output; /* Creates a row */
+        output;
     end;
 
-    /* Keep only SDTM compliant variables */
     keep STUDYID DOMAIN USUBJID VISIT VSDTC VSTESTCD VSTEST VSORRES VSORRESU VSSTRESN VSSTRESU;
 run;
 
 
-/* 3. SORTING ACCORDING TO CDISC SDTMIG STANDARDS */
-proc sort data=work.vs_vertical out=sdtm.vs;
+/* 3. GENERATE SEQUENCE NUMBER (VSSEQ) */
+proc sort data=work.vs_mapped;
     by USUBJID VSDTC VSTESTCD;
+run;
+
+data sdtm.vs;
+    set work.vs_mapped;
+    by USUBJID;
+    if first.USUBJID then VSSEQ = 1;
+    else VSSEQ + 1;
 run;
 
 
 /* 4. VISUAL AUDIT */
-title "VS Domain Audit (Unpivoted Format)";
+title "VS Domain Audit (Unpivoted Format with VSSEQ)";
 proc print data=sdtm.vs(obs=12);
-    var USUBJID VISIT VSDTC VSTESTCD VSSTRESN VSSTRESU;
+    var USUBJID VSSEQ VISIT VSDTC VSTESTCD VSSTRESN VSSTRESU;
 run;
 title;

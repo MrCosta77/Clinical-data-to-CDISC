@@ -9,6 +9,7 @@ Description:  Mapping of raw EDC data to the SDTM AE (Adverse Events) domain.
 
 libname raw "&project_path./data/raw";
 libname sdtm "&project_path./data/sdtm";
+libname adam "&project_path./data/adam";
 
 
 /* 1. IMPORT RAW ADVERSE EVENTS */
@@ -23,24 +24,27 @@ run;
 /* 2. CORE TRANSFORMATION & DERIVATION */
 data work.ae_mapped;
     set work.raw_ae;
-    length AETERM AEDECOD $60 AEREL $15 AESEV $10 AEOUT $30;
+    
+    /* Pre-define variable lengths to prevent SAS truncation */
+    length AETERM AEDECOD $60 AEREL $15 AESEV $10 AEOUT $30 AESER $1;
     
     /* Core Identifiers */
     STUDYID = "CDISC-01";
     DOMAIN  = "AE";
-    USUBJID = catx("-", STUDYID, ID); /* Linking Raw ID to CDISC USUBJID */
+    USUBJID = catx("-", STUDYID, ID);
     
     /* --------------------------------------------------------
        EVENT TERMINOLOGY & ATTRIBUTES
        -------------------------------------------------------- */
     AETERM = strip(AE_TERM);
-    
-    /* In a real scenario, AETERM would be mapped to AEDECOD using MedDRA.
-       For this portfolio, we mimic the dictionary translation. */
     AEDECOD = upcase(AETERM);
     
     /* Severity */
     AESEV = upcase(strip(SEV));
+    
+    /* Serious Event Flag */
+    if upcase(strip(SERIOUS)) = 'Y' then AESER = 'Y';
+    else AESER = 'N';
     
     /* Causality / Relationship to Study Drug */
     if upcase(strip(RELATED)) = 'Y' then AEREL = 'RELATED';
@@ -50,13 +54,10 @@ data work.ae_mapped;
     /* --------------------------------------------------------
        ISO 8601 DATE CONVERSION & OUTCOME DERIVATION
        -------------------------------------------------------- */
-    /* Start Date */
     if vtype(START) = 'C' then _start_num = input(strip(START), anydtdte.);
     else _start_num = START;
-    
     if not missing(_start_num) then AESTDTC = put(_start_num, is8601da.);
     
-    /* End Date & Outcome Derivation (Handling Ongoing Events) */
     if vtype(END) = 'C' then _end_num = input(strip(END), anydtdte.);
     else _end_num = END;
     
@@ -65,12 +66,11 @@ data work.ae_mapped;
         AEOUT   = 'RECOVERED/RESOLVED';
     end;
     else do;
-        /* If there is no end date, the AE is considered ongoing */
         AEENDTC = "";
         AEOUT   = 'NOT RECOVERED/NOT RESOLVED';
     end;
 
-    keep STUDYID DOMAIN USUBJID AETERM AEDECOD AESEV AEREL AESTDTC AEENDTC AEOUT;
+    keep STUDYID DOMAIN USUBJID AETERM AEDECOD AESEV AESER AEREL AESTDTC AEENDTC AEOUT;
 run;
 
 
@@ -94,6 +94,6 @@ run;
 /* 4. VISUAL AUDIT */
 title "AE Domain Audit (Adverse Events with Ongoing Logic)";
 proc print data=sdtm.ae(obs=12);
-    var USUBJID AESEQ AETERM AESEV AEREL AESTDTC AEENDTC AEOUT;
+    var USUBJID AESEQ AETERM AESEV AESER AEREL AESTDTC AEENDTC AEOUT;
 run;
 title;

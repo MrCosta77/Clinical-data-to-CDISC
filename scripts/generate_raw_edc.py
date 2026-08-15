@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import random
 import os
 
-# Configurações do Ensaio Clínico (Simulação do CDISC Pilot)
+# Configurações do Ensaio Clínico
 NUM_PATIENTS = 50
 SITES = ['701', '702', '703', '704']
 START_DATE = datetime(2023, 1, 1)
@@ -38,11 +38,24 @@ def generate_patients():
 
 def generate_vitals(patients_df):
     vitals = []
-    for subj in patients_df['SUBJ_ID']:
-        for visit_num in [1, 2, 3]: # Screening, Baseline, Semana 4
-            visit_date = START_DATE + timedelta(days=30 * visit_num + random.randint(-2, 2))
+    for _, row in patients_df.iterrows():
+        subj = row['SUBJ_ID']
+        try:
+            # Anchor to the individual consent date
+            anchor_date = datetime.strptime(row['ICF_DAT'], '%Y-%m-%d')
+        except:
+            anchor_date = datetime(2023, 1, 15)
+            
+        for visit_num in [1, 2, 3]:
+            # Visit 1 is baseline (around consent date)
+            if visit_num == 1:
+                visit_date = anchor_date + timedelta(days=random.randint(0, 1))
+            # Visits 2 and 3 are follow-ups
+            else:
+                visit_date = anchor_date + timedelta(days=30 * (visit_num - 1) + random.randint(-2, 2))
+                
             vitals.append({
-                'PT_ID': subj, # Nome de ID inconsistente intencionalmente
+                'PT_ID': subj,
                 'VISIT': f'Visit {visit_num}',
                 'VS_DATE': visit_date.strftime('%d-%b-%Y'),
                 'SYS_BP': random.randint(110, 160),
@@ -56,10 +69,10 @@ def generate_adverse_events(patients_df):
     aes = []
     ae_dictionary = ['Headache', 'Nausea', 'Dizziness', 'Insomnia', 'Fatigue', 'Application site erythema']
     
-    # Nem todos os doentes têm EAs
     ae_patients = patients_df.sample(frac=0.6)
     
-    for subj in ae_patients['SUBJ_ID']:
+    for _, row in ae_patients.iterrows():
+        subj = row['SUBJ_ID']
         num_aes = random.randint(1, 3)
         for _ in range(num_aes):
             start_dt = START_DATE + timedelta(days=random.randint(10, 90))
@@ -68,16 +81,15 @@ def generate_adverse_events(patients_df):
                 'ID': subj,
                 'AE_TERM': random.choice(ae_dictionary),
                 'START': start_dt.strftime('%d/%m/%Y'),
-                'END': end_dt.strftime('%d/%m/%Y') if random.random() > 0.1 else '', # 10% de EAs sem data de fim (Ongoing)
+                'END': end_dt.strftime('%d/%m/%Y') if random.random() > 0.1 else '',
                 'SEV': random.choice(['MILD', 'MODERATE', 'SEVERE']),
-                'RELATED': random.choice(['Y', 'N'])
+                'RELATED': random.choice(['Y', 'N']),
+                'SERIOUS': 'Y' if random.random() < 0.05 else 'N' # 5% SAEs
             })
     return pd.DataFrame(aes)
 
 if __name__ == "__main__":
-    print("🧪 A gerar dados EDC brutos para o estudo clínico...")
-    
-    # Criar pasta se não existir
+    print("🧪 Generating raw EDC data...")
     os.makedirs('data/raw', exist_ok=True)
     
     df_dm = generate_patients()
@@ -88,7 +100,4 @@ if __name__ == "__main__":
     df_vs.to_csv('data/raw/raw_vitals.csv', index=False)
     df_ae.to_csv('data/raw/raw_ae.csv', index=False)
     
-    print("✅ Sucesso! Ficheiros gerados na pasta 'data/raw/':")
-    print(f" - raw_demog.csv ({len(df_dm)} registos)")
-    print(f" - raw_vitals.csv ({len(df_vs)} registos)")
-    print(f" - raw_ae.csv ({len(df_ae)} registos)")
+    print("✅ Success! Files generated in 'data/raw/'")

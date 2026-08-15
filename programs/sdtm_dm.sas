@@ -10,6 +10,7 @@ Description:  Mapping of raw EDC data to the SDTM DM (Demographics) domain.
 
 libname raw "&project_path./data/raw";
 libname sdtm "&project_path./data/sdtm";
+libname adam "&project_path./data/adam";
 
 
 /* 2. IMPORT RAW EDC DATA */

@@ -7,6 +7,7 @@ Description:  Derivation of ADAE (Adverse Events Analysis Dataset).
 
 %let project_path = /home/u64384931/Clinical-data-to-cdisc;
 
+libname raw "&project_path./data/raw";
 libname sdtm "&project_path./data/sdtm";
 libname adam "&project_path./data/adam";
 
