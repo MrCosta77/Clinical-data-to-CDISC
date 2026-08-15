@@ -10,9 +10,9 @@ This project is designed to showcase clinical data engineering, defensive SAS pr
 * **Advanced Derivations:** Complex logic for ongoing clinical events, baseline flagging (`ABLFL`), and temporal treatment-emergent derivations (`TRTEMFL`).
 
 ## 📂 Target Architecture
-The project is evolving towards a metadata-driven ETL pipeline with integrated Quality Control (QC):
+The pipeline follows a metadata-driven ETL approach with integrated Quality Control (QC) and presentation layers:
 
-RAW EDC ──▶ Data Cleaning ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS) ──▶ QC Framework
+RAW EDC ──▶ Data Cleaning ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS) ──▶ QC Framework ──▶ TLFs
 
 ## 🛠️ Development Milestones
 
@@ -27,6 +27,10 @@ RAW EDC ──▶ Data Cleaning ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ AD
 - **ADSL (Subject-Level):** Derivation of numeric analysis dates, demographic math (AGE), Treatment Duration (`TRTDURD`), and separation of Planned vs. Actual treatments (`TRT01P` vs `TRT01A`).
 - **ADAE (Adverse Events Analysis):** Temporal derivations to identify Treatment-Emergent Adverse Events (`TRTEMFL`).
 - **ADVS (Vital Signs Analysis):** Advanced Baseline derivations (`ABLFL`) resolving retained PDV memory, and Change from Baseline (`CHG`).
+
+### Phase 3: Quality Control & TLFs
+- **QC Framework:** Automated `PROC SQL` validation scripts to detect duplicate baselines, chronological anomalies (e.g., AE end date before start date), and referential integrity issues across domains.
+- **TLFs (Tables, Listings, Figures):** Generation of regulatory-grade RTF outputs, including "Table 1: Demographics and Baseline Characteristics" (Intent-to-Treat population), utilizing `PROC TABULATE` and the SAS Output Delivery System (ODS).
 
 ## ⚙️ How to Reproduce this Pipeline
 
