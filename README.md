@@ -10,34 +10,36 @@ This project is designed to showcase clinical data engineering, defensive SAS pr
 * **Advanced Derivations:** Complex logic for ongoing clinical events, baseline flagging (`ABLFL`), and temporal treatment-emergent derivations (`TRTEMFL`).
 
 ## 📂 Target Architecture
-The pipeline follows a metadata-driven ETL approach with integrated Quality Control (QC) and presentation layers:
+The pipeline follows a metadata-driven ETL approach, culminating in survival analysis modeling and regulatory-grade presentation layers:
 
-RAW EDC ──▶ Data Cleaning ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS) ──▶ QC Framework ──▶ TLFs
+RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS, ADLB, ADTTE) ──▶ QC Framework ──▶ TLFs (Table 1, Figure 1)
 
 ## 🛠️ Development Milestones
 
 ### Phase 1: SDTM Transformation
 - **DM:** Core subject identifiers, ISO 8601 date standardizations, and Randomization Arms.
-- **VS:** Horizontal-to-vertical unpivoting (wide to long) using explicit OUTPUT statements.
-- **AE:** Sequential numbering (`AESEQ`) and handling of ongoing events without end dates.
-- **EX:** Study drug administration mapping.
-- **LB:** Conditional dictionary mapping and unit representation standardization.
+- **VS & LB:** Horizontal-to-vertical unpivoting (wide to long), conditional dictionary mapping, and parameter standardization.
+- **AE & EX:** Sequential numbering and clinical exposure mapping.
+- **Architecture Validation:** Implementation of `retain` statements to ensure strict CDISC column ordering (Identifiers first).
 
-### Phase 2: ADaM Derivation
-- **ADSL (Subject-Level):** Derivation of numeric analysis dates, demographic math (AGE), Treatment Duration (`TRTDURD`), and separation of Planned vs. Actual treatments (`TRT01P` vs `TRT01A`).
-- **ADAE (Adverse Events Analysis):** Temporal derivations to identify Treatment-Emergent Adverse Events (`TRTEMFL`).
-- **ADVS (Vital Signs Analysis):** Advanced Baseline derivations (`ABLFL`) resolving retained PDV memory, and Change from Baseline (`CHG`).
+### Phase 2: ADaM Derivation & Clinical Logic
+- **ADSL (Subject-Level):** Numeric analysis dates, demographic math (AGE), Treatment Duration, and Population Flags (ITTFL, SAFFL).
+- **ADVS (Vital Signs):** Advanced Baseline derivations (`ABLFL`) resolving retained PDV memory, and Change from Baseline calculations.
+- **ADLB (Laboratory Analysis):** Biochemical logic implementation, including on-the-fly SI unit conversions (e.g., Glucose mg/dL to mmol/L) and derivation of clinical abnormality indicators (`LBNRIND`).
+- **ADTTE (Time-to-Event):** Survival analysis dataset modeling, calculating Time to First Adverse Event and applying mathematical right-censoring (`CNSR`).
 
 ### Phase 3: Quality Control & TLFs
-- **QC Framework:** Automated `PROC SQL` validation scripts to detect duplicate baselines, chronological anomalies (e.g., AE end date before start date), and referential integrity issues across domains.
-- **TLFs (Tables, Listings, Figures):** Generation of regulatory-grade RTF outputs, including "Table 1: Demographics and Baseline Characteristics" (Intent-to-Treat population), utilizing `PROC TABULATE` and the SAS Output Delivery System (ODS).
+- **QC Framework:** Automated `PROC SQL` validation scripts to detect duplicate baselines, chronological anomalies, and referential integrity issues across domains.
+- **TLFs (Tables, Listings, Figures):** Generation of regulatory-grade RTF outputs using ODS.
+  - **Table 1:** Demographics and Baseline Characteristics (Intent-to-Treat population) using `PROC TABULATE`.
+  - **Figure 1:** Kaplan-Meier Survival Curve estimating adverse event probabilities over time using `PROC LIFETEST`.
 
 ## ⚙️ How to Reproduce this Pipeline
 
 To run this project locally or in SAS OnDemand for Academics (SODA):
 
 1. **Clone the repository:**
-   `git clone [https://github.com/your-username/Clinical-data-to-cdisc.git](https://github.com/your-username/Clinical-data-to-cdisc.git)`
+   `git clone https://github.com/your-username/Clinical-data-to-cdisc.git`
 
 2. **Generate the Raw Data:**
    Run the Python engine to simulate the imperfect clinical data extraction.
@@ -50,4 +52,4 @@ To run this project locally or in SAS OnDemand for Academics (SODA):
    * Run `00_setup.sas` to initialize the global libraries (`raw`, `sdtm`, `adam`).
 
 4. **Execute the Pipeline:**
-   Run the SDTM domains sequentially, followed by the ADaM domains.
+   Run the SDTM domains sequentially, followed by the ADaM domains, QC checks, and TLF generation.
