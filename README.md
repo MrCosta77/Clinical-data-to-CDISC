@@ -10,7 +10,7 @@ This project is designed to showcase clinical data engineering, defensive SAS pr
 * **Advanced Derivations:** Complex logic for ongoing clinical events, baseline flagging (`ABLFL`), and temporal treatment-emergent derivations (`TRTEMFL`).
 
 ## 📂 Target Architecture
-The pipeline follows a metadata-driven ETL approach, culminating in survival analysis modeling and regulatory-grade presentation layers:
+The pipeline follows a rule-based clinical data transformation approach, culminating in survival analysis modeling and regulatory-grade presentation layers:
 
 RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS, ADLB, ADTTE) ──▶ QC Framework ──▶ TLFs (Table 1, Figure 1)
 
@@ -24,12 +24,13 @@ RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS) ──▶ ADaM (ADSL, ADAE, ADVS, AD
 
 ### Phase 2: ADaM Derivation & Clinical Logic
 - **ADSL (Subject-Level):** Numeric analysis dates, demographic math (AGE), Treatment Duration, and Population Flags (ITTFL, SAFFL).
+  - *Note on Misallocation:* The synthetic generator deliberately introduces treatment deviations (randomized vs. actual) to demonstrate complex derivations between the Intent-to-Treat (ITT) and Safety populations.
 - **ADVS (Vital Signs):** Advanced Baseline derivations (`ABLFL`) resolving retained PDV memory, and Change from Baseline calculations.
 - **ADLB (Laboratory Analysis):** Biochemical logic implementation, including on-the-fly SI unit conversions (e.g., Glucose mg/dL to mmol/L) and derivation of clinical abnormality indicators (`LBNRIND`).
 - **ADTTE (Time-to-Event):** Survival analysis dataset modeling, calculating Time to First Adverse Event and applying mathematical right-censoring (`CNSR`).
 
 ### Phase 3: Quality Control & TLFs
-- **QC Framework:** Automated `PROC SQL` validation scripts to detect duplicate baselines, chronological anomalies, and referential integrity issues across domains.
+- **QC Framework:** Automated `PROC SQL` validation scripts to detect duplicate baselines, chronological anomalies, and referential integrity issues across domains. The pipeline triggers an `ABORT CANCEL` if critical data errors are detected.
 - **TLFs (Tables, Listings, Figures):** Generation of regulatory-grade RTF outputs using ODS.
   - **Table 1:** Demographics and Baseline Characteristics (Intent-to-Treat population) using `PROC TABULATE`.
   - **Figure 1:** Kaplan-Meier Survival Curve estimating adverse event probabilities over time using `PROC LIFETEST`.
@@ -44,6 +45,7 @@ To run this project locally or in SAS OnDemand for Academics (SODA):
 2. **Generate the Raw Data:**
    Run the Python engine to simulate the imperfect clinical data extraction.
    `python scripts/generate_raw_edc.py`
+   `python scripts/generate_extra_edc.py`
 
 3. **Configure the SAS Environment:**
    * Upload the repository to your SAS environment.
