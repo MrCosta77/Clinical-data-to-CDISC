@@ -5,6 +5,8 @@ Description:  Derivation of ADLB (Laboratory Analysis Dataset).
               Change from Baseline (CHG), and Normal/Abnormal Indicators (LBNRIND).
 *******************************************************************************/
 
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
+
 /* 1. MERGE ADSL AND LB */
 proc sort data=adam.adsl out=work.adsl_sorted;
     by USUBJID;

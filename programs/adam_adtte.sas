@@ -4,9 +4,11 @@ Description:  Derivation of ADTTE (Time-to-Event Analysis Dataset).
               Calculates Time to First Adverse Event (Survival Analysis).
 *******************************************************************************/
 
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
+
 /* 1. GET FIRST ADVERSE EVENT PER SUBJECT */
 proc sort data=adam.adae out=work.adae_first;
-    by USUBJID ASTDT;
+    by USUBJID AESTDT; /* <-- CORREÇÃO: Usar AESTDT (Adverse Event Start Date) */
     where TRTEMFL = 'Y'; /* Analisar apenas eventos Treatment-Emergent */
 run;
 
@@ -14,8 +16,8 @@ data work.ae_target;
     set work.adae_first;
     by USUBJID;
     if first.USUBJID; /* Guardar estritamente o primeiro evento adverso */
-    keep USUBJID ASTDT;
-    rename ASTDT = EVENTDT;
+    keep USUBJID AESTDT; /* <-- CORREÇÃO */
+    rename AESTDT = EVENTDT; /* <-- CORREÇÃO */
 run;
 
 

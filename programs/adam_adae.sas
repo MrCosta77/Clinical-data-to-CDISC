@@ -5,12 +5,7 @@ Description:  Derivation of ADAE (Adverse Events Analysis Dataset).
               study days (ASTDY), and Treatment-Emergent Flags (TRTEMFL).
 *******************************************************************************/
 
-%let project_path = /home/u64384931/Clinical-data-to-cdisc;
-
-libname raw "&project_path./data/raw";
-libname sdtm "&project_path./data/sdtm";
-libname adam "&project_path./data/adam";
-
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
 
 /* 1. SORT INPUT DATASETS BY UNIQUE SUBJECT ID */
 proc sort data=adam.adsl out=work.adsl_sorted;
@@ -24,9 +19,8 @@ run;
 
 /* 2. MERGE ADSL AND AE TO CREATE ADAE */
 data work.adae_draft;
-    retain STUDYID USUBJID;
+	retain STUDYID USUBJID;
     /* ADSL is the master patient list, AE contains multiple rows per patient */
-    retain STUDYID USUBJID;
     merge work.adsl_sorted(in=a) work.ae_sorted(in=b);
     by USUBJID;
     
@@ -65,7 +59,7 @@ data work.adae_draft;
 
     /* Keep the essential clinical and analysis variables */
     keep STUDYID USUBJID SUBJID TRT01A TRTSDT TRTEDT AGE SEX 
-         AESEQ AETERM AEDECOD AESEV AEREL AEOUT 
+         AESEQ AETERM AEDECOD AESEV AEREL AEOUT AESER
          AESTDT AEENDT ASTDY TRTEMFL;
 run;
 

@@ -5,11 +5,7 @@ Description:  Derivation of ADSL (Subject-Level Analysis Dataset).
               numeric analysis dates, and calculates age and treatment duration.
 *******************************************************************************/
 
-%let project_path = /home/u64384931/Clinical-data-to-cdisc;
-
-libname raw "&project_path./data/raw";
-libname sdtm "&project_path./data/sdtm";
-libname adam "&project_path./data/adam";
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
 
 /* 1. GET FIRST EXPOSURE RECORD PER SUBJECT */
 proc sort data=sdtm.ex out=work.ex_first;

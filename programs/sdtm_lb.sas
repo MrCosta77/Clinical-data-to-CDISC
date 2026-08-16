@@ -5,12 +5,7 @@ Description:  Mapping of raw EDC data to the SDTM LB (Laboratory) domain.
               categories, and standardization of SI units.
 *******************************************************************************/
 
-%let project_path = /home/u64384931/Clinical-data-to-cdisc;
-
-libname raw "&project_path./data/raw";
-libname sdtm "&project_path./data/sdtm";
-libname adam "&project_path./data/adam";
-
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
 
 /* 1. IMPORT RAW LAB DATA */
 proc import datafile="&project_path./data/raw/raw_lab.csv"

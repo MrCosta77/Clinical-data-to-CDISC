@@ -4,7 +4,10 @@ Description:  Generates Table 1: Demographics and Baseline Characteristics.
               Uses ODS RTF to export a professional Word document.
 *******************************************************************************/
 
-/* Abrir a porta RTF com o estilo 'Journal' sem fechar a do SAS Studio */
+/* 1. INITIALIZE MASTER CONFIGURATION */
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
+
+/* Open ODS RTF destination with Journal style without closing SAS Studio output */
 ods rtf file="&project_path./tlf_table1.rtf" style=Journal;
 
 title1 "Table 1: Demographics and Baseline Characteristics";
@@ -18,7 +21,7 @@ proc tabulate data=adam.adsl missing;
     var AGE; 
     
     table 
-        /* --- ROWS (Com formatação limpa e percentagens) --- */
+        /* --- ROWS (Clean formatting and percentages) --- */
         ALL="Total Subjects" * N=""
         SEX="Sex" * (N="n" * f=5.0 ColPctN="%" * f=5.1)
         RACE="Race" * (N="n" * f=5.0 ColPctN="%" * f=5.1)
@@ -32,5 +35,5 @@ run;
 
 title;
 
-/* Fechar apenas o ficheiro Word */
+/* Close only the RTF file */
 ods rtf close;

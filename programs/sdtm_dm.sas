@@ -5,13 +5,7 @@ Description:  Mapping of raw EDC data to the SDTM DM (Demographics) domain.
               and ISO 8601 date conversion.
 *******************************************************************************/
 
-/* 1. ENVIRONMENT AND LIBRARY SETUP */
-%let project_path = /home/u64384931/Clinical-data-to-cdisc;
-
-libname raw "&project_path./data/raw";
-libname sdtm "&project_path./data/sdtm";
-libname adam "&project_path./data/adam";
-
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
 
 /* 2. IMPORT RAW EDC DATA */
 proc import datafile="&project_path./data/raw/raw_demog.csv"

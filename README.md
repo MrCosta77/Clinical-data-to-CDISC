@@ -51,5 +51,10 @@ To run this project locally or in SAS OnDemand for Academics (SODA):
    * Modify the `%let project_path = ...` variable to match your root directory.
    * Run `00_setup.sas` to initialize the global libraries (`raw`, `sdtm`, `adam`).
 
-4. **Execute the Pipeline:**
-   Run the SDTM domains sequentially, followed by the ADaM domains, QC checks, and TLF generation.
+4. **Execute the Pipeline (Strict Execution Order):**
+   In clinical programming, the ETL flow relies on strict hierarchical dependencies. You must execute the SAS programs in this exact order:
+   * **Phase 1 (Raw to SDTM):** Run all `sdtm_*.sas` programs (order between them does not matter).
+   * **Phase 2 (Core ADaM):** Run `adam_adsl.sas`. *(Crucial: This generates the Safety/ITT populations and treatment dates needed by all subsequent domains).*
+   * **Phase 3 (Analysis Domains):** Run `adam_adae.sas`, `adam_advs.sas`, and `adam_adlb.sas`.
+   * **Phase 4 (Survival Analysis):** Run `adam_adtte.sas`. *(Note: This explicitly depends on the derived ADAE dataset).*
+   * **Phase 5 (Reporting & Validation):** Run `tlf_table1.sas`, `tlf_figure1.sas`, and `qc_core.sas` to generate the final regulatory outputs.

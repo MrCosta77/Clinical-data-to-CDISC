@@ -4,11 +4,13 @@ Description:  Generates Figure 1: Kaplan-Meier Survival Curve.
               Analyzes the Time to First Adverse Event using ADTTE.
 *******************************************************************************/
 
+/* 1. INITIALIZE MASTER CONFIGURATION */
+%include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
+
 /* Enable high-resolution graphics in SAS */
 ods graphics on / width=8in height=6in imagename="KM_Curve";
 
 /* Open ODS RTF destination for Word export with classic Journal style */
-/* FIXED PATH: Saving directly to the root project folder */
 ods rtf file="&project_path./tlf_figure1.rtf" style=Journal;
 
 title1 "Figure 1: Kaplan-Meier Plot for Time to First Adverse Event";

@@ -19,6 +19,9 @@ def generate_extras():
     lab_tests = ['Glucose', 'Hemoglobin', 'ALT', 'AST']
     
     for _, row in df_dm.iterrows():
+        if row.get('RANDOMIZED_ARM') == 'Not Randomized':
+            continue
+        
         subj_id = row['SUBJ_ID']
         # Use consent date as the baseline for events
         try:
@@ -43,8 +46,13 @@ def generate_extras():
         })
 
         # 2. GENERATE LABORATORY (3 Visits)
+
         for visit_num in [1, 2, 3]:
-            lab_date = start_base + timedelta(days=30 * (visit_num - 1) + random.randint(-3, 3))
+            if visit_num == 1:
+                lab_date = start_base + timedelta(days=random.randint(-3, 0))
+            else:
+                lab_date = start_base + timedelta(days=30 * (visit_num - 1) + random.randint(-5, 5))
+
             
             for test in lab_tests:
                 # Generate values with some noise in units
