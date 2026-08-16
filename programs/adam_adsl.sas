@@ -31,6 +31,7 @@ run;
 
 /* 3. MERGE DEMOGRAPHICS AND EXPOSURE TO CREATE ADSL */
 data work.adsl_draft;
+    retain STUDYID USUBJID SUBJID;
     merge work.dm_sorted(in=a) work.ex_trt(in=b);
     by USUBJID;
     if a; /* Keep all randomized subjects from DM */

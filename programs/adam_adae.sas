@@ -24,7 +24,9 @@ run;
 
 /* 2. MERGE ADSL AND AE TO CREATE ADAE */
 data work.adae_draft;
+    retain STUDYID USUBJID;
     /* ADSL is the master patient list, AE contains multiple rows per patient */
+    retain STUDYID USUBJID;
     merge work.adsl_sorted(in=a) work.ae_sorted(in=b);
     by USUBJID;
     

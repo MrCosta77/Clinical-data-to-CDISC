@@ -98,6 +98,7 @@ proc sort data=work.lb_mapped;
 run;
 
 data sdtm.lb;
+	retain STUDYID DOMAIN USUBJID LBSEQ;
     set work.lb_mapped;
     by USUBJID;
     

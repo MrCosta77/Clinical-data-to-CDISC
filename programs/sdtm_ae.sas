@@ -82,6 +82,7 @@ run;
 
 /* Use BY-group processing to create the Sequence Number */
 data sdtm.ae;
+	retain STUDYID DOMAIN USUBJID AESEQ;
     set work.ae_mapped;
     by USUBJID;
     

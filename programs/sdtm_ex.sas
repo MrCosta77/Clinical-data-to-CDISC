@@ -63,6 +63,7 @@ proc sort data=work.ex_mapped;
 run;
 
 data sdtm.ex;
+	retain STUDYID DOMAIN USUBJID EXSEQ;
     set work.ex_mapped;
     by USUBJID;
     

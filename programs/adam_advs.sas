@@ -21,6 +21,7 @@ proc sort data=sdtm.vs out=work.vs_sorted;
 run;
 
 data work.advs_draft;
+	retain STUDYID USUBJID;
     merge work.adsl_sorted(in=a) work.vs_sorted(in=b);
     by USUBJID;
     if b; /* Keep only records that have vital signs */
@@ -72,6 +73,7 @@ proc sort data=work.advs_draft;
 run;
 
 data adam.advs;
+	retain STUDYID USUBJID SUBJID;
     merge work.advs_draft(in=a) work.base_flags(in=b);
     by USUBJID PARAMCD;
     if a;

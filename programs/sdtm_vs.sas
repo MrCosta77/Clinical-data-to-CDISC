@@ -88,6 +88,7 @@ proc sort data=work.vs_mapped;
 run;
 
 data sdtm.vs;
+	retain STUDYID DOMAIN USUBJID VSSEQ;
     set work.vs_mapped;
     by USUBJID;
     if first.USUBJID then VSSEQ = 1;

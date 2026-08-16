@@ -24,6 +24,7 @@ run;
 
 /* 3. TRANSFORMATION AND SDTM MAPPING */
 data sdtm.dm;
+    retain STUDYID DOMAIN USUBJID SUBJID;
     set work.raw_dm;
     length ARM $20 ARMCD $8;
     
