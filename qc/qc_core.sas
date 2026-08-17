@@ -159,3 +159,15 @@ quit;
 %mend;
 
 %abort_if_fail;
+
+/* ---------------------------------------------------------
+   EXPORT QC REPORT TO RTF FOR GITHUB PORTFOLIO
+--------------------------------------------------------- */
+ods rtf file="&project_path./qc_report.rtf" style=Journal; /* <-- Removido o /tlfs/ */
+
+title "Automated Quality Control (QC) Report";
+proc print data=adam.qc_report noobs;
+run;
+title;
+
+ods rtf close;
