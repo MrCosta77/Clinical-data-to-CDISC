@@ -15,6 +15,8 @@ def generate_extras():
 
     ex_records = []
     lb_records = []
+    cm_records = []
+    cm_meds = ['Paracetamol', 'Ibuprofen', 'Omeprazole', 'Lisinopril', 'Atorvastatin', 'Aspirin']
     
     lab_tests = ['Glucose', 'Hemoglobin', 'ALT', 'AST']
     
@@ -74,14 +76,35 @@ def generate_extras():
                     'RESULT': res,
                     'UNIT': unit
                 })
+        
+        # 3. GENERATE CONCOMITANT MEDICATIONS (CM)
+        
+        num_cm = random.randint(0, 3) 
+        for _ in range(num_cm):
+            # A medicação de base geralmente começa antes do ensaio (dias negativos)
+            cm_start = start_base - timedelta(days=random.randint(10, 365)) 
+            # Algumas param durante o ensaio, outras são crónicas (sem data de fim)
+            cm_end = start_base + timedelta(days=random.randint(10, 80)) if random.random() > 0.4 else ''
+            
+            cm_records.append({
+                'SUBJECT': subj_id,
+                'MEDICATION': random.choice(cm_meds),
+                'DOSE': random.choice(['10 mg', '20 mg', '500 mg', '1000 mg']),
+                'START_DT': cm_start.strftime('%d/%m/%Y'),
+                'END_DT': cm_end.strftime('%d/%m/%Y') if cm_end else '',
+                'ONGOING': 'Y' if not cm_end else 'N'
+            })
 
+    # Save files
     # Save files
     pd.DataFrame(ex_records).to_csv('data/raw/raw_exposure.csv', index=False)
     pd.DataFrame(lb_records).to_csv('data/raw/raw_lab.csv', index=False)
+    pd.DataFrame(cm_records).to_csv('data/raw/raw_conmeds.csv', index=False)
     
     print("✅ Success! Extra files generated in the 'data/raw/' folder:")
     print(f" - raw_exposure.csv ({len(ex_records)} records)")
     print(f" - raw_lab.csv ({len(lb_records)} records)")
+    print(f" - raw_conmeds.csv ({len(cm_records)} records)")
 
 if __name__ == "__main__":
     generate_extras()
