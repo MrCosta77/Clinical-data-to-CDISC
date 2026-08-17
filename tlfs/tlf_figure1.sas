@@ -7,8 +7,8 @@ Description:  Generates Figure 1: Kaplan-Meier Survival Curve.
 /* 1. INITIALIZE MASTER CONFIGURATION */
 %include "/home/u64384931/Clinical-data-to-cdisc/programs/00_setup.sas";
 
-/* Enable high-resolution graphics in SAS */
-ods graphics on / width=8in height=6in imagename="KM_Curve";
+/* Enable high-resolution graphics in SAS (Adjusted size to clear RTF margin warnings) */
+ods graphics on / width=7in height=5.5in imagename="KM_Curve";
 
 /* Open ODS RTF destination for Word export with classic Journal style */
 ods rtf file="&project_path./tlf_figure1.rtf" style=Journal;
