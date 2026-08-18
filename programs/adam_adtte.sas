@@ -8,16 +8,16 @@ Description:  Derivation of ADTTE (Time-to-Event Analysis Dataset).
 
 /* 1. GET FIRST ADVERSE EVENT PER SUBJECT */
 proc sort data=adam.adae out=work.adae_first;
-    by USUBJID AESTDT; /* <-- CORREÇÃO: Usar AESTDT (Adverse Event Start Date) */
-    where TRTEMFL = 'Y'; /* Analisar apenas eventos Treatment-Emergent */
+    by USUBJID AESTDT; 
+    where TRTEMFL = 'Y'; 
 run;
 
 data work.ae_target;
     set work.adae_first;
     by USUBJID;
-    if first.USUBJID; /* Guardar estritamente o primeiro evento adverso */
-    keep USUBJID AESTDT; /* <-- CORREÇÃO */
-    rename AESTDT = EVENTDT; /* <-- CORREÇÃO */
+    if first.USUBJID;
+    keep USUBJID AESTDT;
+    rename AESTDT = EVENTDT; 
 run;
 
 
@@ -32,7 +32,6 @@ data adam.adtte;
     merge work.adsl_sorted(in=a) work.ae_target(in=b);
     by USUBJID;
     
-    /* A análise de segurança/sobrevivência foca-se na Safety Population */
     if a and SAFFL = 'Y'; 
 
     PARAMCD = "TTFAEV";
@@ -47,13 +46,11 @@ data adam.adtte;
         AVAL = (EVENTDT - TRTSDT) + 1; /* Dias até ao evento */
     end;
     else do;
-        /* O doente concluiu o estudo sem eventos (Censurado) */
-        CNSR = 1; 
-        if not missing(TRTEDT) then AVAL = (TRTEDT - TRTSDT) + 1;
-        else AVAL = .; /* Proteção para missing data */
-    end;
+    CNSR = 1; 
+    if not missing(TRTEDT) then AVAL = (TRTEDT - TRTSDT) + 1;
+    else AVAL = ('30APR2023'd - TRTSDT) + 1; 
+end;
 
-    /* Salvaguarda analítica: AVAL não pode ser negativo */
     if AVAL < 0 then AVAL = 0;
 
     keep STUDYID USUBJID TRT01P TRT01A TRTSDT TRTEDT PARAMCD PARAM CNSR AVAL EVENTDT;

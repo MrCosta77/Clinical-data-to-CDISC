@@ -69,7 +69,7 @@ proc sort data=work.advs_draft;
 run;
 
 data adam.advs;
-	retain STUDYID USUBJID SUBJID;
+	retain STUDYID USUBJID;
     merge work.advs_draft(in=a) work.base_flags(in=b);
     by USUBJID PARAMCD;
     if a;
