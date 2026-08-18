@@ -1,56 +1,60 @@
 SUBJECT,CONDITION,DIAGNOSIS_DATE
-702-001,Osteoarthritis,2015-11-25
-702-001,Hyperlipidemia,2009-06-13
-701-002,Asthma,2021-07-12
-701-002,Depression,2011-11-13
-703-003,Depression,2009-06-10
-702-004,Hypertension,2018-04-18
-701-005,Type 2 Diabetes,2013-06-14
-701-005,Osteoarthritis,2010-12-14
-703-007,Depression,2016-01-15
-701-008,Osteoarthritis,2012-04-30
-704-009,Hyperlipidemia,2011-03-30
-704-009,Osteoarthritis,2016-03-18
-704-010,Hypertension,2012-03-24
-704-010,Hypertension,2012-02-14
-704-011,Hyperlipidemia,2017-07-17
-703-012,Hypertension,2011-03-09
-703-013,Asthma,2022-01-10
-703-014,Hyperlipidemia,2020-11-28
-702-017,Hyperlipidemia,2018-05-27
-702-017,Depression,2017-06-17
-703-018,Asthma,2011-03-27
-704-019,Hypertension,2011-08-17
-704-019,Osteoarthritis,2016-05-09
-704-020,Hyperlipidemia,2010-08-12
-704-020,Hypertension,2021-02-16
-703-022,Hyperlipidemia,2020-09-01
-703-024,Hypertension,2020-08-27
-701-025,Osteoarthritis,2018-11-30
-701-025,Hyperlipidemia,2018-03-27
-703-026,Asthma,2012-07-12
-703-028,Hypertension,2020-02-25
-701-029,Osteoarthritis,2014-03-26
-701-029,Hypertension,2013-12-01
-703-031,Asthma,2017-03-31
-703-031,Type 2 Diabetes,2011-04-03
-704-032,Hypertension,2013-05-17
-704-032,Hypertension,2009-08-18
-701-033,Type 2 Diabetes,2016-08-24
-702-037,Hypertension,2011-07-09
-702-037,Asthma,2017-12-15
-701-038,Asthma,2010-10-25
-701-038,Hyperlipidemia,2009-06-10
-703-041,Osteoarthritis,2016-02-07
-703-041,Depression,2012-02-21
-704-042,Hypertension,2015-03-11
-704-042,Osteoarthritis,2017-10-07
-703-043,Hyperlipidemia,2018-07-10
-703-044,Osteoarthritis,2016-07-01
-703-045,Hyperlipidemia,2013-09-05
-704-046,Osteoarthritis,2014-06-15
-701-047,Asthma,2014-07-07
-701-047,Asthma,2015-04-28
-702-048,Depression,2009-09-17
-704-049,Type 2 Diabetes,2015-05-14
-701-050,Depression,2015-01-11
+701-002,Hyperlipidemia,2019-07-28
+701-002,Osteoarthritis,2015-04-15
+703-003,Depression,2012-03-18
+703-003,Asthma,2015-06-16
+701-004,Depression,2012-02-23
+701-004,Hypertension,2017-05-04
+701-005,Asthma,2016-02-25
+702-006,Asthma,2013-02-08
+702-006,Type 2 Diabetes,2017-12-15
+701-007,Depression,2014-07-06
+701-007,Hypertension,2011-09-23
+703-008,Hypertension,2013-07-10
+703-008,Depression,2017-09-21
+703-009,Hyperlipidemia,2010-06-30
+701-010,Hyperlipidemia,2021-10-15
+704-011,Depression,2021-10-15
+704-013,Osteoarthritis,2014-11-22
+701-014,Osteoarthritis,2018-07-15
+704-016,Hypertension,2010-02-22
+704-016,Osteoarthritis,2014-05-22
+701-021,Asthma,2016-12-27
+701-021,Asthma,2013-09-30
+701-022,Hypertension,2011-09-23
+702-023,Hypertension,2012-04-04
+702-023,Type 2 Diabetes,2010-06-05
+701-024,Hyperlipidemia,2014-09-16
+704-025,Depression,2019-06-27
+704-025,Asthma,2019-12-08
+704-026,Osteoarthritis,2016-05-19
+704-026,Asthma,2019-07-31
+704-027,Type 2 Diabetes,2018-11-14
+704-027,Hyperlipidemia,2014-01-13
+701-030,Type 2 Diabetes,2013-11-13
+704-031,Type 2 Diabetes,2016-11-11
+704-031,Type 2 Diabetes,2017-04-19
+701-032,Depression,2013-02-18
+703-033,Depression,2020-10-16
+703-033,Hypertension,2014-07-11
+703-034,Depression,2016-01-12
+703-035,Hyperlipidemia,2013-03-26
+703-035,Hyperlipidemia,2018-01-17
+704-036,Depression,2020-01-14
+704-036,Depression,2018-04-06
+701-039,Hypertension,2018-12-03
+701-039,Osteoarthritis,2012-04-06
+704-040,Type 2 Diabetes,2013-06-23
+703-041,Type 2 Diabetes,2011-05-02
+703-041,Hypertension,2014-10-03
+704-042,Hyperlipidemia,2017-06-28
+703-044,Hypertension,2009-10-22
+703-044,Hypertension,2022-01-23
+703-045,Hypertension,2009-08-21
+703-045,Hypertension,2018-10-26
+702-047,Asthma,2013-09-04
+702-047,Type 2 Diabetes,2018-08-20
+704-048,Asthma,2012-08-10
+704-048,Osteoarthritis,2010-06-14
+703-050,Type 2 Diabetes,2015-11-07
+703-050,Hypertension,2015-06-15
