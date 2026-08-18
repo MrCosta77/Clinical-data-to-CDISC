@@ -32,8 +32,13 @@ def generate_extras():
             start_base = datetime(2023, 1, 15) # Fallback
 
         # 1. GENERATE EXPOSURE (Study Drug)
-        trt_arm = random.choice(['Placebo', 'Active Drug 50mg'])
+        if random.random() < 0.05:  
+            trt_arm = 'Placebo' if row['RANDOMIZED_ARM'] == 'Active Drug 50mg' else 'Active Drug 50mg'
+        else:
+            trt_arm = row['RANDOMIZED_ARM'] # 95% recebe o tratamento correto
+            
         dose_start = start_base + timedelta(days=random.randint(1, 5))
+        
         # 15% of patients drop out early
         days_on_drug = random.randint(10, 30) if random.random() < 0.15 else 84 
         dose_end = dose_start + timedelta(days=days_on_drug)
