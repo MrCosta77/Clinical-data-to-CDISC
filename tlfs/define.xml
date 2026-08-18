@@ -98,6 +98,14 @@
         <ItemRef ItemOID="IT.ADVS .ABLFL " Mandatory="No"/>
         <ItemRef ItemOID="IT.ADVS .CHG " Mandatory="No"/>
       </ItemGroupDef>
+      <ItemGroupDef OID="IG.QC_REPORT " Name="QC_REPORT " Repeating="Yes" IsReferenceData="No">
+        <Description><TranslatedText>QC_REPORT  Dataset (ADAM )</TranslatedText></Description>
+        <ItemRef ItemOID="IT.QC_REPORT .CHECK_ID " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .DOMAIN " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .RULE " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .STATUS " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .N_FAIL " Mandatory="No"/>
+      </ItemGroupDef>
       <ItemGroupDef OID="IG.AE " Name="AE " Repeating="Yes" IsReferenceData="No">
         <Description><TranslatedText>AE  Dataset (SDTM )</TranslatedText></Description>
         <ItemRef ItemOID="IT.AE .STUDYID " Mandatory="No"/>
@@ -155,6 +163,10 @@
         <ItemRef ItemOID="IT.EG .RESULT " Mandatory="No"/>
         <ItemRef ItemOID="IT.EG .UNIT " Mandatory="No"/>
         <ItemRef ItemOID="IT.EG .DATE " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .MHTERM " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .CONDITION " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .MHSTDTC " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .DIAGNOSIS_DATE " Mandatory="No"/>
         <ItemRef ItemOID="IT.EG .EGSEQ " Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="IG.EX " Name="EX " Repeating="Yes" IsReferenceData="No">
@@ -540,8 +552,14 @@
       <ItemDef OID="IT.DM .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
         <Description><TranslatedText>USUBJID </TranslatedText></Description>
       </ItemDef>
+      <ItemDef OID="IT.EG .CONDITION " Name="CONDITION " DataType="integer " Length="8 ">
+        <Description><TranslatedText>CONDITION </TranslatedText></Description>
+      </ItemDef>
       <ItemDef OID="IT.EG .DATE " Name="DATE " DataType="integer " Length="8 ">
         <Description><TranslatedText>DATE </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.EG .DIAGNOSIS_DATE " Name="DIAGNOSIS_DATE " DataType="integer " Length="8 ">
+        <Description><TranslatedText>DIAGNOSIS_DATE </TranslatedText></Description>
       </ItemDef>
       <ItemDef OID="IT.EG .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
         <Description><TranslatedText>DOMAIN </TranslatedText></Description>
@@ -563,6 +581,12 @@
       </ItemDef>
       <ItemDef OID="IT.EG .EGTESTCD " Name="EGTESTCD " DataType="text " Length="8 ">
         <Description><TranslatedText>EGTESTCD </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.EG .MHSTDTC " Name="MHSTDTC " DataType="text " Length="12 ">
+        <Description><TranslatedText>MHSTDTC </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.EG .MHTERM " Name="MHTERM " DataType="text " Length="12 ">
+        <Description><TranslatedText>MHTERM </TranslatedText></Description>
       </ItemDef>
       <ItemDef OID="IT.EG .RESULT " Name="RESULT " DataType="integer " Length="8 ">
         <Description><TranslatedText>RESULT </TranslatedText></Description>
@@ -677,6 +701,21 @@
       </ItemDef>
       <ItemDef OID="IT.MH .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
         <Description><TranslatedText>USUBJID </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .CHECK_ID " Name="CHECK_ID " DataType="text " Length="10 ">
+        <Description><TranslatedText>CHECK_ID </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .DOMAIN " Name="DOMAIN " DataType="text " Length="10 ">
+        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .N_FAIL " Name="N_FAIL " DataType="integer " Length="8 ">
+        <Description><TranslatedText>N_FAIL </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .RULE " Name="RULE " DataType="text " Length="50 ">
+        <Description><TranslatedText>RULE </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .STATUS " Name="STATUS " DataType="text " Length="10 ">
+        <Description><TranslatedText>STATUS </TranslatedText></Description>
       </ItemDef>
       <ItemDef OID="IT.VS .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
         <Description><TranslatedText>DOMAIN </TranslatedText></Description>

@@ -15,10 +15,11 @@ data sdtm.eg;
     
     set work.raw_eg;
     
-    STUDYID = "CDISC-001";
-    DOMAIN = "EG";
-    USUBJID = strip(SUBJECT);
-    EGTEST = strip(TEST_NAME);
+    STUDYID = "CDISC-01";
+    DOMAIN = "MH";
+    USUBJID = catx('-', STUDYID, strip(SUBJECT)); 
+    MHTERM = strip(CONDITION);
+    MHSTDTC = strip(DIAGNOSIS_DATE);
     
     /* Assign short codes based on the test name */
     if EGTEST = "Heart Rate" then EGTESTCD = "HR";

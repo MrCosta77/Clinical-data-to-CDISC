@@ -15,9 +15,9 @@ data sdtm.mh;
     
     set work.raw_mh;
     
-    STUDYID = "CDISC-001";
+    STUDYID = "CDISC-01";
     DOMAIN = "MH";
-    USUBJID = strip(SUBJECT);
+    USUBJID = catx('-', STUDYID, strip(SUBJECT)); 
     MHTERM = strip(CONDITION);
     MHSTDTC = strip(DIAGNOSIS_DATE);
 run;

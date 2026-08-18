@@ -2,7 +2,7 @@
 
 An educational end-to-end clinical data pipeline demonstrating the transformation of raw, unstructured Electronic Data Capture (EDC) exports into **CDISC SDTM (Study Data Tabulation Model)** and **ADaM (Analysis Data Model)** datasets. 
 
-This project is designed to showcase clinical data engineering, defensive SAS programming, and statistical analysis dataset derivation, culminating in a regulatory-ready Define-XML metadata dictionary.
+This project is designed to showcase clinical data engineering, defensive SAS programming, and statistical analysis dataset derivation, culminating in a structural Define-XML v2.0 metadata prototype.
 
 ## 🚀 Core Engineering Philosophy
 * **Educational Terminology Mapping:** Utilizes mock dictionaries to simulate MedDRA and CDISC Controlled Terminology mapping.
@@ -35,7 +35,7 @@ RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS, CM, MH, EG) ──▶ ADaM (ADSL, AD
 - **TLFs (Tables, Listings, Figures):** Generation of regulatory-grade RTF outputs using ODS.
   - **Table 1:** Demographics and Baseline Characteristics (Intent-to-Treat population) using `PROC TABULATE`.
   - **Figure 1:** Kaplan-Meier Survival Curve estimating adverse event probabilities over time using `PROC LIFETEST`.
-- **Define-XML v2.0:** Dynamic extraction of structural metadata using SAS dictionary tables (`dictionary.columns`) to generate regulatory-compliant CDISC XML definitions directly from the datasets.
+- **Define-XML v2.0:** Dynamic extraction of structural metadata using SAS dictionary tables (dictionary.columns) to generate a structural Define-XML v2.0 prototype, demonstrating automated metadata cataloging directly from the datasets.
 
 ## ⚙️ How to Reproduce this Pipeline
 
