@@ -46,7 +46,8 @@ data work.cm_draft;
     end;
     
     /* Handle Ongoing Medications */
-    if ONGOING = 'Y' then CMENRTPT = "ONGOING";
+    if ONGOING = 'Y' then CMENRTPT = 'ONGOING';
+    else CMENRTPT = '';
     
     keep STUDYID DOMAIN USUBJID CMTRT CMDECOD CMDOSE CMDOSU CMSTDTC CMENDTC CMENRTPT;
 run;

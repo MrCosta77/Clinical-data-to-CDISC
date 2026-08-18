@@ -21,10 +21,16 @@ data work.ae_target;
 run;
 
 
-/* 2. MERGE WITH POPULATION (ADSL) */
 proc sort data=adam.adsl out=work.adsl_sorted;
     by USUBJID;
 run;
+
+/* NOVO: Extrair dinamicamente a data mais recente do estudo */
+proc sql noprint;
+    select max(ASTDT) format=date9. into :study_cutoff 
+    from adam.advs;
+quit;
+%put INFO: Dynamic Study Cutoff Date is &study_cutoff;
 
 data adam.adtte;
     retain STUDYID USUBJID PARAMCD PARAM;
@@ -46,10 +52,11 @@ data adam.adtte;
         AVAL = (EVENTDT - TRTSDT) + 1; /* Dias até ao evento */
     end;
     else do;
-    CNSR = 1; 
-    if not missing(TRTEDT) then AVAL = (TRTEDT - TRTSDT) + 1;
-    else AVAL = ('30APR2023'd - TRTSDT) + 1; 
-end;
+        CNSR = 1; 
+        if not missing(TRTEDT) then AVAL = (TRTEDT - TRTSDT) + 1;
+        /* Usa a variável dinâmica em vez da data esculpida na pedra */
+        else AVAL = ("&study_cutoff"d - TRTSDT) + 1; 
+    end;
 
     if AVAL < 0 then AVAL = 0;
 

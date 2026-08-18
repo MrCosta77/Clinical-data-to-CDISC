@@ -10,16 +10,15 @@ proc import datafile="&project_path./data/raw/raw_ecg.csv"
 run;
 
 data sdtm.eg;
-    retain STUDYID DOMAIN USUBJID EGSEQ EGTESTCD EGTEST EGORRES EGORRESU EGDTC;
     length STUDYID $8 DOMAIN $2 USUBJID $200 EGTESTCD $8 EGTEST $40 EGORRES $20 EGORRESU $20 EGDTC $10;
     
     set work.raw_eg;
     
     STUDYID = "CDISC-01";
-    DOMAIN = "MH";
+    DOMAIN = "EG"; /* Alterado de "MH" para "EG" */
     USUBJID = catx('-', STUDYID, strip(SUBJECT)); 
-    MHTERM = strip(CONDITION);
-    MHSTDTC = strip(DIAGNOSIS_DATE);
+    
+    EGTEST = strip(TEST_NAME); /* Lê a variável de origem correta */
     
     /* Assign short codes based on the test name */
     if EGTEST = "Heart Rate" then EGTESTCD = "HR";
@@ -37,6 +36,7 @@ proc sort data=sdtm.eg;
 run;
 
 data sdtm.eg; 
+    retain STUDYID DOMAIN USUBJID EGSEQ EGTESTCD EGTEST EGORRES EGORRESU EGDTC;
     set sdtm.eg; 
     by USUBJID; 
     if first.USUBJID then EGSEQ=1; 
