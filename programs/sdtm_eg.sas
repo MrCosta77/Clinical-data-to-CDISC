@@ -15,7 +15,7 @@ data sdtm.eg;
     set work.raw_eg;
     
     STUDYID = "CDISC-01";
-    DOMAIN = "EG"; /* Alterado de "MH" para "EG" */
+    DOMAIN = "EG";
     USUBJID = catx('-', STUDYID, strip(SUBJECT)); 
     
     EGTEST = strip(TEST_NAME); /* Lê a variável de origem correta */
