@@ -10,7 +10,8 @@ proc import datafile="&project_path./data/raw/raw_ecg.csv"
 run;
 
 data sdtm.eg;
-    length STUDYID $8 DOMAIN $2 USUBJID $200 EGTESTCD $8 EGTEST $40 EGORRES $20 EGORRESU $20 EGDTC $10;
+    length STUDYID $8 DOMAIN $2 USUBJID $200 EGTESTCD $8 EGTEST $40
+           EGORRES $20 EGORRESU $20 EGSTRESC $20 EGSTRESU $20 EGDTC $10;
     
     set work.raw_eg;
     
@@ -26,9 +27,20 @@ data sdtm.eg;
     else if EGTEST = "RR Duration" then EGTESTCD = "RR";
     else EGTESTCD = "UNKNOWN";
     
-    EGORRES = strip(put(RESULT, best.));
+    EGORRES = strip(put(RESULT, best32.));
     EGORRESU = strip(UNIT);
-    EGDTC = strip(DATE);
+    EGSTRESN = RESULT;
+    EGSTRESC = strip(put(EGSTRESN, best32.));
+    EGSTRESU = strip(UNIT);
+
+    /* PROC IMPORT may infer DATE as a numeric SAS date. Always emit ISO 8601. */
+    if vtype(DATE) = 'C' then _egdt = input(strip(DATE), anydtdte.);
+    else _egdt = DATE;
+
+    if not missing(_egdt) then EGDTC = put(_egdt, is8601da.);
+
+    keep STUDYID DOMAIN USUBJID EGTESTCD EGTEST EGORRES EGORRESU
+         EGSTRESC EGSTRESN EGSTRESU EGDTC;
 run;
 
 proc sort data=sdtm.eg; 
@@ -36,9 +48,13 @@ proc sort data=sdtm.eg;
 run;
 
 data sdtm.eg; 
-    retain STUDYID DOMAIN USUBJID EGSEQ EGTESTCD EGTEST EGORRES EGORRESU EGDTC;
+    retain STUDYID DOMAIN USUBJID EGSEQ EGTESTCD EGTEST EGORRES EGORRESU
+           EGSTRESC EGSTRESN EGSTRESU EGDTC;
     set sdtm.eg; 
     by USUBJID; 
     if first.USUBJID then EGSEQ=1; 
     else EGSEQ+1; 
+
+    keep STUDYID DOMAIN USUBJID EGSEQ EGTESTCD EGTEST EGORRES EGORRESU
+         EGSTRESC EGSTRESN EGSTRESU EGDTC;
 run;

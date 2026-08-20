@@ -107,6 +107,92 @@ proc sql noprint;
     where AVAL < 0 and not missing(AVAL); /* CORREÇÃO: Ignorar explicitamente missing values SAS (.) */
 quit;
 
+/* RULE 12: SDTM EG - Referential Integrity */
+proc sql noprint;
+    create table chk_eg01 as
+    select 'SDTM-006' as CHECK_ID, 'EG' as DOMAIN, 'Every EG.USUBJID exists in DM' as RULE,
+           count(*) as N_FAIL
+    from sdtm.eg e left join sdtm.dm d on e.USUBJID = d.USUBJID
+    where d.USUBJID is null;
+quit;
+
+/* RULE 13: SDTM EG - Required variables must exist */
+proc sql noprint;
+    create table chk_eg02 as
+    select 'SDTM-007' as CHECK_ID, 'EG' as DOMAIN, 'Required EG variables must exist' as RULE,
+           12 - count(distinct upcase(name)) as N_FAIL
+    from dictionary.columns
+    where libname = 'SDTM' and memname = 'EG'
+      and upcase(name) in (
+          'STUDYID', 'DOMAIN', 'USUBJID', 'EGSEQ', 'EGTESTCD', 'EGTEST',
+          'EGORRES', 'EGORRESU', 'EGSTRESC', 'EGSTRESN', 'EGSTRESU', 'EGDTC'
+      );
+quit;
+
+/* RULE 14: SDTM EG - Dates and numeric standard results must be usable */
+proc sql noprint;
+    create table chk_eg03 as
+    select 'SDTM-008' as CHECK_ID, 'EG' as DOMAIN, 'EG date/value contract must be valid' as RULE,
+           count(*) as N_FAIL
+    from sdtm.eg
+    where missing(EGDTC)
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(EGDTC)) = 0
+       or missing(EGSTRESN)
+       or missing(EGSTRESC);
+quit;
+
+/* RULE 15: SDTM EG - Raw import variables must not leak into SDTM */
+proc sql noprint;
+    create table chk_eg04 as
+    select 'SDTM-009' as CHECK_ID, 'EG' as DOMAIN, 'Raw EG variables must not leak to SDTM' as RULE,
+           count(*) as N_FAIL
+    from dictionary.columns
+    where libname = 'SDTM' and memname = 'EG'
+      and upcase(name) in ('SUBJECT', 'TEST_NAME', 'RESULT', 'UNIT', 'DATE');
+quit;
+
+/* RULE 16: SDTM MH - Referential Integrity */
+proc sql noprint;
+    create table chk_mh01 as
+    select 'SDTM-010' as CHECK_ID, 'MH' as DOMAIN, 'Every MH.USUBJID exists in DM' as RULE,
+           count(*) as N_FAIL
+    from sdtm.mh m left join sdtm.dm d on m.USUBJID = d.USUBJID
+    where d.USUBJID is null;
+quit;
+
+/* RULE 17: SDTM MH - Required variables must exist */
+proc sql noprint;
+    create table chk_mh02 as
+    select 'SDTM-011' as CHECK_ID, 'MH' as DOMAIN, 'Required MH variables must exist' as RULE,
+           6 - count(distinct upcase(name)) as N_FAIL
+    from dictionary.columns
+    where libname = 'SDTM' and memname = 'MH'
+      and upcase(name) in (
+          'STUDYID', 'DOMAIN', 'USUBJID', 'MHSEQ', 'MHTERM', 'MHSTDTC'
+      );
+quit;
+
+/* RULE 18: SDTM MH - Dates and terms must be usable */
+proc sql noprint;
+    create table chk_mh03 as
+    select 'SDTM-012' as CHECK_ID, 'MH' as DOMAIN, 'MH date/term contract must be valid' as RULE,
+           count(*) as N_FAIL
+    from sdtm.mh
+    where missing(MHSTDTC)
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(MHSTDTC)) = 0
+       or missing(MHTERM);
+quit;
+
+/* RULE 19: SDTM MH - Raw import variables must not leak into SDTM */
+proc sql noprint;
+    create table chk_mh04 as
+    select 'SDTM-013' as CHECK_ID, 'MH' as DOMAIN, 'Raw MH variables must not leak to SDTM' as RULE,
+           count(*) as N_FAIL
+    from dictionary.columns
+    where libname = 'SDTM' and memname = 'MH'
+      and upcase(name) in ('SUBJECT', 'CONDITION', 'DIAGNOSIS_DATE');
+quit;
+
 
 /* -------------------------------------------------------------------
    2. CONSOLIDATE RESULTS (Generate Permanent Data)
@@ -116,7 +202,9 @@ data adam.qc_report;
     length CHECK_ID $10 DOMAIN $10 RULE $50 STATUS $10;
     
     set chk_adsl01 chk_adae01 chk_advs01 chk_adlb01 chk_dm01 
-        chk_ae01 chk_ex01 chk_lb01 chk_vs01 chk_adsl02 chk_adtte01;
+        chk_ae01 chk_ex01 chk_lb01 chk_vs01 chk_adsl02 chk_adtte01
+        chk_eg01 chk_eg02 chk_eg03 chk_eg04
+        chk_mh01 chk_mh02 chk_mh03 chk_mh04;
         
     if N_FAIL = 0 then STATUS = "PASS";
     else STATUS = "FAIL";
@@ -153,7 +241,7 @@ quit;
     %end;
     %else %do;
         %put NOTE: ---------------------------------------------------;
-        %put NOTE: QC VALIDATION COMPLETE. ALL 11 CHECKS PASSED SUCCESSFULLY.;
+        %put NOTE: QC VALIDATION COMPLETE. ALL 19 CHECKS PASSED SUCCESSFULLY.;
         %put NOTE: ---------------------------------------------------;
     %end;
 %mend;

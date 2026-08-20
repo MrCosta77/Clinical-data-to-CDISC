@@ -98,6 +98,14 @@
         <ItemRef ItemOID="IT.ADVS .ABLFL " Mandatory="No"/>
         <ItemRef ItemOID="IT.ADVS .CHG " Mandatory="No"/>
       </ItemGroupDef>
+      <ItemGroupDef OID="IG.QC_REPORT " Name="QC_REPORT " Repeating="Yes" IsReferenceData="No">
+        <Description><TranslatedText>QC_REPORT  Dataset (ADAM )</TranslatedText></Description>
+        <ItemRef ItemOID="IT.QC_REPORT .CHECK_ID " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .DOMAIN " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .RULE " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .STATUS " Mandatory="No"/>
+        <ItemRef ItemOID="IT.QC_REPORT .N_FAIL " Mandatory="No"/>
+      </ItemGroupDef>
       <ItemGroupDef OID="IG.AE " Name="AE " Repeating="Yes" IsReferenceData="No">
         <Description><TranslatedText>AE  Dataset (SDTM )</TranslatedText></Description>
         <ItemRef ItemOID="IT.AE .STUDYID " Mandatory="No"/>
@@ -150,12 +158,10 @@
         <ItemRef ItemOID="IT.EG .EGTEST " Mandatory="No"/>
         <ItemRef ItemOID="IT.EG .EGORRES " Mandatory="No"/>
         <ItemRef ItemOID="IT.EG .EGORRESU " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .EGSTRESC " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .EGSTRESN " Mandatory="No"/>
+        <ItemRef ItemOID="IT.EG .EGSTRESU " Mandatory="No"/>
         <ItemRef ItemOID="IT.EG .EGDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .SUBJECT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .TEST_NAME " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .RESULT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .UNIT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .DATE " Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="IG.EX " Name="EX " Repeating="Yes" IsReferenceData="No">
         <Description><TranslatedText>EX  Dataset (SDTM )</TranslatedText></Description>
@@ -194,9 +200,6 @@
         <ItemRef ItemOID="IT.MH .MHSEQ " Mandatory="No"/>
         <ItemRef ItemOID="IT.MH .MHTERM " Mandatory="No"/>
         <ItemRef ItemOID="IT.MH .MHSTDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .SUBJECT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .CONDITION " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .DIAGNOSIS_DATE " Mandatory="No"/>
       </ItemGroupDef>
       <ItemGroupDef OID="IG.VS " Name="VS " Repeating="Yes" IsReferenceData="No">
         <Description><TranslatedText>VS  Dataset (SDTM )</TranslatedText></Description>
@@ -540,9 +543,6 @@
       <ItemDef OID="IT.DM .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
         <Description><TranslatedText>USUBJID </TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .DATE " Name="DATE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>DATE </TranslatedText></Description>
-      </ItemDef>
       <ItemDef OID="IT.EG .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
         <Description><TranslatedText>DOMAIN </TranslatedText></Description>
       </ItemDef>
@@ -558,26 +558,23 @@
       <ItemDef OID="IT.EG .EGSEQ " Name="EGSEQ " DataType="integer " Length="8 ">
         <Description><TranslatedText>EGSEQ </TranslatedText></Description>
       </ItemDef>
+      <ItemDef OID="IT.EG .EGSTRESC " Name="EGSTRESC " DataType="text " Length="20 ">
+        <Description><TranslatedText>EGSTRESC </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.EG .EGSTRESN " Name="EGSTRESN " DataType="integer " Length="8 ">
+        <Description><TranslatedText>EGSTRESN </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.EG .EGSTRESU " Name="EGSTRESU " DataType="text " Length="20 ">
+        <Description><TranslatedText>EGSTRESU </TranslatedText></Description>
+      </ItemDef>
       <ItemDef OID="IT.EG .EGTEST " Name="EGTEST " DataType="text " Length="40 ">
         <Description><TranslatedText>EGTEST </TranslatedText></Description>
       </ItemDef>
       <ItemDef OID="IT.EG .EGTESTCD " Name="EGTESTCD " DataType="text " Length="8 ">
         <Description><TranslatedText>EGTESTCD </TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .RESULT " Name="RESULT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>RESULT </TranslatedText></Description>
-      </ItemDef>
       <ItemDef OID="IT.EG .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
         <Description><TranslatedText>STUDYID </TranslatedText></Description>
-      </ItemDef>
-      <ItemDef OID="IT.EG .SUBJECT " Name="SUBJECT " DataType="text " Length="7 ">
-        <Description><TranslatedText>SUBJECT </TranslatedText></Description>
-      </ItemDef>
-      <ItemDef OID="IT.EG .TEST_NAME " Name="TEST_NAME " DataType="text " Length="11 ">
-        <Description><TranslatedText>TEST_NAME </TranslatedText></Description>
-      </ItemDef>
-      <ItemDef OID="IT.EG .UNIT " Name="UNIT " DataType="text " Length="9 ">
-        <Description><TranslatedText>UNIT </TranslatedText></Description>
       </ItemDef>
       <ItemDef OID="IT.EG .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
         <Description><TranslatedText>USUBJID </TranslatedText></Description>
@@ -651,12 +648,6 @@
       <ItemDef OID="IT.LB .VISIT " Name="VISIT " DataType="text " Length="7 ">
         <Description><TranslatedText>VISIT </TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .CONDITION " Name="CONDITION " DataType="text " Length="15 ">
-        <Description><TranslatedText>CONDITION </TranslatedText></Description>
-      </ItemDef>
-      <ItemDef OID="IT.MH .DIAGNOSIS_DATE " Name="DIAGNOSIS_DATE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>DIAGNOSIS_DATE </TranslatedText></Description>
-      </ItemDef>
       <ItemDef OID="IT.MH .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
         <Description><TranslatedText>DOMAIN </TranslatedText></Description>
       </ItemDef>
@@ -672,11 +663,23 @@
       <ItemDef OID="IT.MH .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
         <Description><TranslatedText>STUDYID </TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .SUBJECT " Name="SUBJECT " DataType="text " Length="7 ">
-        <Description><TranslatedText>SUBJECT </TranslatedText></Description>
-      </ItemDef>
       <ItemDef OID="IT.MH .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
         <Description><TranslatedText>USUBJID </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .CHECK_ID " Name="CHECK_ID " DataType="text " Length="10 ">
+        <Description><TranslatedText>CHECK_ID </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .DOMAIN " Name="DOMAIN " DataType="text " Length="10 ">
+        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .N_FAIL " Name="N_FAIL " DataType="integer " Length="8 ">
+        <Description><TranslatedText>N_FAIL </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .RULE " Name="RULE " DataType="text " Length="50 ">
+        <Description><TranslatedText>RULE </TranslatedText></Description>
+      </ItemDef>
+      <ItemDef OID="IT.QC_REPORT .STATUS " Name="STATUS " DataType="text " Length="10 ">
+        <Description><TranslatedText>STATUS </TranslatedText></Description>
       </ItemDef>
       <ItemDef OID="IT.VS .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
         <Description><TranslatedText>DOMAIN </TranslatedText></Description>

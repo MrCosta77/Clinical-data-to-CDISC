@@ -18,7 +18,15 @@ data sdtm.mh;
     DOMAIN = "MH";
     USUBJID = catx('-', STUDYID, strip(SUBJECT)); 
     MHTERM = strip(CONDITION);
-    MHSTDTC = strip(DIAGNOSIS_DATE);
+
+    /* PROC IMPORT may infer DIAGNOSIS_DATE as a numeric SAS date. */
+    if vtype(DIAGNOSIS_DATE) = 'C' then
+        _mhdt = input(strip(DIAGNOSIS_DATE), anydtdte.);
+    else _mhdt = DIAGNOSIS_DATE;
+
+    if not missing(_mhdt) then MHSTDTC = put(_mhdt, is8601da.);
+
+    keep STUDYID DOMAIN USUBJID MHTERM MHSTDTC;
 run;
 
 proc sort data=sdtm.mh; 
@@ -31,4 +39,6 @@ data sdtm.mh;
     by USUBJID; 
     if first.USUBJID then MHSEQ=1; 
     else MHSEQ+1; 
+
+    keep STUDYID DOMAIN USUBJID MHSEQ MHTERM MHSTDTC;
 run;
