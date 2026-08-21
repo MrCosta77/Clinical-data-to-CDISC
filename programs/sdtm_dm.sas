@@ -18,7 +18,7 @@ run;
 
 /* 3. TRANSFORMATION AND SDTM MAPPING */
 data sdtm.dm;
-    retain STUDYID DOMAIN USUBJID SUBJID;
+    retain STUDYID DOMAIN USUBJID SUBJID RFSTDTC RFENDTC RFPENDTC RFICDTC;
     set work.raw_dm;
     length ARM $20 ARMCD $8;
     
@@ -75,15 +75,25 @@ data sdtm.dm;
     else _rfic_num = ICF_DAT;
     
     if not missing(_rfic_num) then RFICDTC = put(_rfic_num, is8601da.);
+
+    /* Sponsor-defined subject reference period: consent through end of participation. */
+    RFSTDTC = RFICDTC;
+    if vtype(STUDY_END_DAT) = 'C' then _rfend_num = input(strip(STUDY_END_DAT), anydtdte.);
+    else _rfend_num = STUDY_END_DAT;
+    if not missing(_rfend_num) then do;
+        RFENDTC = put(_rfend_num, is8601da.);
+        RFPENDTC = RFENDTC;
+    end;
     
     /* Keep only variables that belong to the SDTM standard */
-    keep STUDYID DOMAIN USUBJID SUBJID SEX RACE BRTHDTC RFICDTC ARM ARMCD;
+    keep STUDYID DOMAIN USUBJID SUBJID SEX RACE BRTHDTC RFSTDTC RFENDTC
+         RFPENDTC RFICDTC ARM ARMCD;
 run;
 
 
 /* 4. VISUAL AUDIT (Quality Check) */
 title "DM Domain Audit (First 10 Records)";
 proc print data=sdtm.dm(obs=10);
-    var STUDYID USUBJID SEX RACE BRTHDTC RFICDTC ARM ARMCD;
+    var STUDYID USUBJID SEX RACE BRTHDTC RFICDTC RFSTDTC RFENDTC RFPENDTC ARM ARMCD;
 run;
 title;

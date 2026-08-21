@@ -28,6 +28,7 @@ data work.lb_mapped;
     DOMAIN  = "LB";
     USUBJID = catx("-", STUDYID, SUBJ);
     VISIT   = strip(VISIT_NAM);
+    VISITNUM = VISIT_NUM;
     
     /* --------------------------------------------------------
        TEST CODES, CATEGORIES, AND UNITS MAPPING
@@ -83,7 +84,7 @@ data work.lb_mapped;
     
     if not missing(_lab_num) then LBDTC = put(_lab_num, is8601da.);
     
-    keep STUDYID DOMAIN USUBJID VISIT LBTESTCD LBTEST LBCAT LBORRES LBORRESU LBSTRESC LBSTRESN LBSTRESU LBDTC;
+    keep STUDYID DOMAIN USUBJID VISITNUM VISIT LBTESTCD LBTEST LBCAT LBORRES LBORRESU LBSTRESC LBSTRESN LBSTRESU LBDTC;
 run;
 
 
@@ -106,6 +107,6 @@ run;
 /* 4. VISUAL AUDIT */
 title "LB Domain Audit (Laboratory Test Results)";
 proc print data=sdtm.lb(obs=12);
-    var USUBJID VISIT LBTESTCD LBCAT LBSTRESN LBSTRESU LBDTC;
+    var USUBJID VISITNUM VISIT LBTESTCD LBCAT LBSTRESN LBSTRESU LBDTC;
 run;
 title;

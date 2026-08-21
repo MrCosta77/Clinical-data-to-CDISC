@@ -20,7 +20,7 @@ quit;
 
 /* 2. Initialize XML File and Write Header */
 data _null_;
-    file "&project_path./define.xml" encoding="utf-8";
+    file "&project_path./tlfs/define.xml" encoding="utf-8";
     put '<?xml version="1.0" encoding="UTF-8"?>';
     put '<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:def="http://www.cdisc.org/ns/def/v2.0" FileType="Snapshot">';
     put '  <Study OID="STU.001">';
@@ -36,19 +36,27 @@ run;
 data _null_;
     set meta_data;
     by libname dataset;
-    file "&project_path./define.xml" mod encoding="utf-8";
+    file "&project_path./tlfs/define.xml" mod encoding="utf-8";
     
-    length ds_name $32 var_name $32 lib_name $10;
+    length ds_name $32 var_name $32 lib_name $10 line $1024;
     ds_name = strip(dataset);
     var_name = strip(variable);
     lib_name = strip(libname);
     
     if first.dataset then do;
-        put '      <ItemGroupDef OID="IG.' ds_name '" Name="' ds_name '" Repeating="Yes" IsReferenceData="No">';
-        put '        <Description><TranslatedText>' ds_name ' Dataset (' lib_name ')</TranslatedText></Description>';
+        line = cats('      <ItemGroupDef OID="IG.', ds_name,
+                    '" Name="', ds_name,
+                    '" Repeating="Yes" IsReferenceData="No">');
+        put line;
+        line = cats('        <Description><TranslatedText>', ds_name,
+                    ' Dataset (', lib_name,
+                    ')</TranslatedText></Description>');
+        put line;
     end;
-    
-    put '        <ItemRef ItemOID="IT.' ds_name '.' var_name '" Mandatory="No"/>';
+
+    line = cats('        <ItemRef ItemOID="IT.', ds_name, '.', var_name,
+                '" Mandatory="No"/>');
+    put line;
     
     if last.dataset then do;
         put '      </ItemGroupDef>';
@@ -62,9 +70,10 @@ run;
 
 data _null_;
     set unique_vars;
-    file "&project_path./define.xml" mod encoding="utf-8";
+    file "&project_path./tlfs/define.xml" mod encoding="utf-8";
     
-    length ds_name $32 var_name $32 var_lbl $256 dt_type $10 len_str $5;
+    length ds_name $32 var_name $32 var_lbl $256 dt_type $10 len_str $5
+           line $1024;
     ds_name = strip(dataset);
     var_name = strip(variable);
     var_lbl = strip(label);
@@ -75,14 +84,19 @@ data _null_;
     
     len_str = strip(put(length, best.));
     
-    put '      <ItemDef OID="IT.' ds_name '.' var_name '" Name="' var_name '" DataType="' dt_type '" Length="' len_str '">';
-    put '        <Description><TranslatedText>' var_lbl '</TranslatedText></Description>';
+    line = cats('      <ItemDef OID="IT.', ds_name, '.', var_name,
+                '" Name="', var_name, '" DataType="', dt_type,
+                '" Length="', len_str, '">');
+    put line;
+    line = cats('        <Description><TranslatedText>', var_lbl,
+                '</TranslatedText></Description>');
+    put line;
     put '      </ItemDef>';
 run;
 
 /* 5. Close XML Tags */
 data _null_;
-    file "&project_path./define.xml" mod encoding="utf-8";
+    file "&project_path./tlfs/define.xml" mod encoding="utf-8";
     put '    </MetaDataVersion>';
     put '  </Study>';
     put '</ODM>';

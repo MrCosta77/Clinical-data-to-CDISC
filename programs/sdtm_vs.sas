@@ -24,6 +24,7 @@ data work.vs_mapped;
     STUDYID = "CDISC-01";
     DOMAIN  = "VS";
     USUBJID = catx("-", STUDYID, PT_ID); 
+    VISITNUM = VISIT_NUM;
 
     if vtype(VS_DATE) = 'C' then _vs_num = input(strip(VS_DATE), anydtdte.);
     else _vs_num = VS_DATE;
@@ -73,7 +74,7 @@ data work.vs_mapped;
         output;
     end;
 
-    keep STUDYID DOMAIN USUBJID VISIT VSDTC VSTESTCD VSTEST VSORRES VSORRESU VSSTRESN VSSTRESU;
+    keep STUDYID DOMAIN USUBJID VISITNUM VISIT VSDTC VSTESTCD VSTEST VSORRES VSORRESU VSSTRESN VSSTRESU;
 run;
 
 
@@ -94,6 +95,6 @@ run;
 /* 4. VISUAL AUDIT */
 title "VS Domain Audit (Unpivoted Format with VSSEQ)";
 proc print data=sdtm.vs(obs=12);
-    var USUBJID VSSEQ VISIT VSDTC VSTESTCD VSSTRESN VSSTRESU;
+    var USUBJID VSSEQ VISITNUM VISIT VSDTC VSTESTCD VSSTRESN VSSTRESU;
 run;
 title;

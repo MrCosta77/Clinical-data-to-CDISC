@@ -13,6 +13,8 @@ proc import datafile="&project_path./data/raw/raw_ae.csv"
     dbms=csv
     replace;
     getnames=yes;
+    /* Scan the complete synthetic extract so longer terms are not truncated. */
+    guessingrows=max;
 run;
 
 

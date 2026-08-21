@@ -7,715 +7,821 @@
       <ProtocolName>CDISC-001</ProtocolName>
     </GlobalVariables>
     <MetaDataVersion OID="MDV.001" Name="Study Metadata" def:DefineVersion="2.0.0">
-      <ItemGroupDef OID="IG.ADAE " Name="ADAE " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>ADAE  Dataset (ADAM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.ADAE .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .SUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .SEX " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .TRT01A " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .TRTSDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .TRTEDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AGE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AESEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AETERM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AEDECOD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AEREL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AESEV " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AEOUT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AESER " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AESTDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .AEENDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .ASTDY " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADAE .TRTEMFL " Mandatory="No"/>
+<ItemGroupDef OID="IG.ADAE" Name="ADAE" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>ADAEDataset (ADAM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.ADAE.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.SUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.SEX" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.TRT01A" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.TRTSDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.TRTEDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AGE" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AESEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AETERM" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AEDECOD" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AEREL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AESEV" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AEOUT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AESER" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AESTDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.AEENDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.ASTDY" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADAE.TRTEMFL" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.ADLB " Name="ADLB " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>ADLB  Dataset (ADAM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.ADLB .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .PARAMCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .PARAM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .TRT01A " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .TRTSDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .TRTEDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .LBSTRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .AVAL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .AVISIT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .ASTDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .ASTDY " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .BASE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .BASE_DT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .ABLFL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .CHG " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADLB .LBNRIND " Mandatory="No"/>
+<ItemGroupDef OID="IG.ADLB" Name="ADLB" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>ADLBDataset (ADAM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.ADLB.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.PARAMCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.PARAM" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.TRT01A" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.TRTSDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.TRTEDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.LBSTRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.AVAL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.AVISIT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.ASTDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.ASTDY" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.BASE" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.BASE_DT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.ABLFL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.CHG" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADLB.LBNRIND" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.ADSL " Name="ADSL " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>ADSL  Dataset (ADAM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.ADSL .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .SUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .SEX " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .RACE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .TRT01P " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .TRT01A " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .ITTFL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .SAFFL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .BRTHDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .RFICDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .TRTSDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .TRTEDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .AGE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADSL .TRTDURD " Mandatory="No"/>
+<ItemGroupDef OID="IG.ADSL" Name="ADSL" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>ADSLDataset (ADAM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.ADSL.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.SUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.SEX" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.RACE" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.TRT01P" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.TRT01A" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.ITTFL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.SAFFL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.BRTHDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.RFICDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.TRTSDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.TRTEDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.AGE" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADSL.TRTDURD" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.ADTTE " Name="ADTTE " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>ADTTE  Dataset (ADAM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.ADTTE .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .PARAMCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .PARAM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .TRT01P " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .TRT01A " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .TRTSDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .TRTEDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .EVENTDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .CNSR " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADTTE .AVAL " Mandatory="No"/>
+<ItemGroupDef OID="IG.ADTTE" Name="ADTTE" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>ADTTEDataset (ADAM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.ADTTE.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.PARAMCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.PARAM" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.TRT01P" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.TRT01A" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.TRTSDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.TRTEDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.EVENTDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.CNSR" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADTTE.AVAL" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.ADVS " Name="ADVS " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>ADVS  Dataset (ADAM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.ADVS .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .TRT01A " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .TRTSDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .TRTEDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .PARAMCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .PARAM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .AVAL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .AVISIT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .ASTDT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .ASTDY " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .BASE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .ABLFL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.ADVS .CHG " Mandatory="No"/>
+<ItemGroupDef OID="IG.ADVS" Name="ADVS" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>ADVSDataset (ADAM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.ADVS.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.TRT01A" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.TRTSDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.TRTEDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.PARAMCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.PARAM" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.AVAL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.AVISIT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.ASTDT" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.ASTDY" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.BASE" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.ABLFL" Mandatory="No"/>
+<ItemRef ItemOID="IT.ADVS.CHG" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.QC_REPORT " Name="QC_REPORT " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>QC_REPORT  Dataset (ADAM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.QC_REPORT .CHECK_ID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.QC_REPORT .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.QC_REPORT .RULE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.QC_REPORT .STATUS " Mandatory="No"/>
-        <ItemRef ItemOID="IT.QC_REPORT .N_FAIL " Mandatory="No"/>
+<ItemGroupDef OID="IG.QC_REPORT" Name="QC_REPORT" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>QC_REPORTDataset (ADAM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.QC_REPORT.CHECK_ID" Mandatory="No"/>
+<ItemRef ItemOID="IT.QC_REPORT.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.QC_REPORT.RULE" Mandatory="No"/>
+<ItemRef ItemOID="IT.QC_REPORT.STATUS" Mandatory="No"/>
+<ItemRef ItemOID="IT.QC_REPORT.N_FAIL" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.AE " Name="AE " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>AE  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.AE .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AESEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AETERM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AEDECOD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AEREL " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AESEV " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AEOUT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AESER " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AESTDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.AE .AEENDTC " Mandatory="No"/>
+<ItemGroupDef OID="IG.AE" Name="AE" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>AEDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.AE.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AESEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AETERM" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AEDECOD" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AEREL" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AESEV" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AEOUT" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AESER" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AESTDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.AE.AEENDTC" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.CM " Name="CM " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>CM  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.CM .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMSEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMTRT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMDECOD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMDOSE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMDOSU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMSTDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMENDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.CM .CMENRTPT " Mandatory="No"/>
+<ItemGroupDef OID="IG.CM" Name="CM" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>CMDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.CM.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMTRT" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMDECOD" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMDOSE" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMDOSU" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMSTDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMENDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.CM.CMENRTPT" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.DM " Name="DM " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>DM  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.DM .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .SUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .ARM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .ARMCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .SEX " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .RACE " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .BRTHDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.DM .RFICDTC " Mandatory="No"/>
+<ItemGroupDef OID="IG.DM" Name="DM" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>DMDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.DM.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.SUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.RFSTDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.RFENDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.RFPENDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.RFICDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.ARM" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.ARMCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.SEX" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.RACE" Mandatory="No"/>
+<ItemRef ItemOID="IT.DM.BRTHDTC" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.EG " Name="EG " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>EG  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.EG .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGSEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGTESTCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGTEST " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGORRES " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGORRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGSTRESC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGSTRESN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGSTRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EG .EGDTC " Mandatory="No"/>
+<ItemGroupDef OID="IG.DS" Name="DS" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>DSDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.DS.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DSSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DSCAT" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DSSCAT" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DSTERM" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DSDECOD" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.EPOCH" Mandatory="No"/>
+<ItemRef ItemOID="IT.DS.DSSTDTC" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.EX " Name="EX " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>EX  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.EX .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .EXSEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .EXTRT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .EXDOSU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .EXSTDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .EXENDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.EX .EXDOSE " Mandatory="No"/>
+<ItemGroupDef OID="IG.EG" Name="EG" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>EGDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.EG.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.VISITNUM" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.VISIT" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGTESTCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGTEST" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGORRES" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGORRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGSTRESC" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGSTRESN" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGSTRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.EG.EGDTC" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.LB " Name="LB " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>LB  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.LB .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBSEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBTESTCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBTEST " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBCAT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBORRES " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBORRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBSTRESC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBSTRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .VISIT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBSTRESN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.LB .LBDTC " Mandatory="No"/>
+<ItemGroupDef OID="IG.EX" Name="EX" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>EXDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.EX.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.EXSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.EXTRT" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.EXDOSU" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.EXSTDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.EXENDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.EX.EXDOSE" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.MH " Name="MH " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>MH  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.MH .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .MHSEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .MHTERM " Mandatory="No"/>
-        <ItemRef ItemOID="IT.MH .MHSTDTC " Mandatory="No"/>
+<ItemGroupDef OID="IG.LB" Name="LB" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>LBDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.LB.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBTESTCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBTEST" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBCAT" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBORRES" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBORRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBSTRESC" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBSTRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.VISIT" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.VISITNUM" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBSTRESN" Mandatory="No"/>
+<ItemRef ItemOID="IT.LB.LBDTC" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="IG.VS " Name="VS " Repeating="Yes" IsReferenceData="No">
-        <Description><TranslatedText>VS  Dataset (SDTM )</TranslatedText></Description>
-        <ItemRef ItemOID="IT.VS .STUDYID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .DOMAIN " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .USUBJID " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSSEQ " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VISIT " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSTESTCD " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSTEST " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSORRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSSTRESU " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSORRES " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSDTC " Mandatory="No"/>
-        <ItemRef ItemOID="IT.VS .VSSTRESN " Mandatory="No"/>
+<ItemGroupDef OID="IG.MH" Name="MH" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>MHDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.MH.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.MH.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.MH.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.MH.MHSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.MH.MHTERM" Mandatory="No"/>
+<ItemRef ItemOID="IT.MH.MHSTDTC" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemDef OID="IT.ADAE .AEDECOD " Name="AEDECOD " DataType="text " Length="60 ">
-        <Description><TranslatedText>AEDECOD </TranslatedText></Description>
+<ItemGroupDef OID="IG.SV" Name="SV" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>SVDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.SV.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.VISIT" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.SVSTDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.SVENDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.VISITNUM" Mandatory="No"/>
+<ItemRef ItemOID="IT.SV.VISITDY" Mandatory="No"/>
+      </ItemGroupDef>
+<ItemGroupDef OID="IG.VS" Name="VS" Repeating="Yes" IsReferenceData="No">
+<Description><TranslatedText>VSDataset (SDTM)</TranslatedText></Description>
+<ItemRef ItemOID="IT.VS.STUDYID" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.DOMAIN" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.USUBJID" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSSEQ" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VISIT" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSTESTCD" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSTEST" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSORRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSSTRESU" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSORRES" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VISITNUM" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSDTC" Mandatory="No"/>
+<ItemRef ItemOID="IT.VS.VSSTRESN" Mandatory="No"/>
+      </ItemGroupDef>
+<ItemDef OID="IT.ADAE.AEDECOD" Name="AEDECOD" DataType="text" Length="60">
+<Description><TranslatedText>AEDECOD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AEENDT " Name="AEENDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AEENDT </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AEENDT" Name="AEENDT" DataType="integer" Length="8">
+<Description><TranslatedText>AEENDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AEOUT " Name="AEOUT " DataType="text " Length="30 ">
-        <Description><TranslatedText>AEOUT </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AEOUT" Name="AEOUT" DataType="text" Length="30">
+<Description><TranslatedText>AEOUT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AEREL " Name="AEREL " DataType="text " Length="15 ">
-        <Description><TranslatedText>AEREL </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AEREL" Name="AEREL" DataType="text" Length="15">
+<Description><TranslatedText>AEREL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AESEQ " Name="AESEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AESEQ </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AESEQ" Name="AESEQ" DataType="integer" Length="8">
+<Description><TranslatedText>AESEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AESER " Name="AESER " DataType="text " Length="1 ">
-        <Description><TranslatedText>AESER </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AESER" Name="AESER" DataType="text" Length="1">
+<Description><TranslatedText>AESER</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AESEV " Name="AESEV " DataType="text " Length="10 ">
-        <Description><TranslatedText>AESEV </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AESEV" Name="AESEV" DataType="text" Length="10">
+<Description><TranslatedText>AESEV</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AESTDT " Name="AESTDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AESTDT </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AESTDT" Name="AESTDT" DataType="integer" Length="8">
+<Description><TranslatedText>AESTDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AETERM " Name="AETERM " DataType="text " Length="60 ">
-        <Description><TranslatedText>AETERM </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AETERM" Name="AETERM" DataType="text" Length="60">
+<Description><TranslatedText>AETERM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .AGE " Name="AGE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AGE </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.AGE" Name="AGE" DataType="integer" Length="8">
+<Description><TranslatedText>AGE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .ASTDY " Name="ASTDY " DataType="integer " Length="8 ">
-        <Description><TranslatedText>ASTDY </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.ASTDY" Name="ASTDY" DataType="integer" Length="8">
+<Description><TranslatedText>ASTDY</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .SEX " Name="SEX " DataType="text " Length="1 ">
-        <Description><TranslatedText>SEX </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.SEX" Name="SEX" DataType="text" Length="1">
+<Description><TranslatedText>SEX</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .SUBJID " Name="SUBJID " DataType="text " Length="7 ">
-        <Description><TranslatedText>SUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.SUBJID" Name="SUBJID" DataType="text" Length="7">
+<Description><TranslatedText>SUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .TRT01A " Name="TRT01A " DataType="text " Length="50 ">
-        <Description><TranslatedText>TRT01A </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.TRT01A" Name="TRT01A" DataType="text" Length="50">
+<Description><TranslatedText>TRT01A</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .TRTEDT " Name="TRTEDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTEDT </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.TRTEDT" Name="TRTEDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTEDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .TRTEMFL " Name="TRTEMFL " DataType="text " Length="1 ">
-        <Description><TranslatedText>TRTEMFL </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.TRTEMFL" Name="TRTEMFL" DataType="text" Length="1">
+<Description><TranslatedText>TRTEMFL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .TRTSDT " Name="TRTSDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTSDT </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.TRTSDT" Name="TRTSDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTSDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADAE .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADAE.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .ABLFL " Name="ABLFL " DataType="text " Length="1 ">
-        <Description><TranslatedText>ABLFL </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.ABLFL" Name="ABLFL" DataType="text" Length="1">
+<Description><TranslatedText>ABLFL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .ASTDT " Name="ASTDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>ASTDT </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.ASTDT" Name="ASTDT" DataType="integer" Length="8">
+<Description><TranslatedText>ASTDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .ASTDY " Name="ASTDY " DataType="integer " Length="8 ">
-        <Description><TranslatedText>ASTDY </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.ASTDY" Name="ASTDY" DataType="integer" Length="8">
+<Description><TranslatedText>ASTDY</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .AVAL " Name="AVAL " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AVAL </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.AVAL" Name="AVAL" DataType="integer" Length="8">
+<Description><TranslatedText>AVAL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .AVISIT " Name="AVISIT " DataType="text " Length="7 ">
-        <Description><TranslatedText>AVISIT </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.AVISIT" Name="AVISIT" DataType="text" Length="7">
+<Description><TranslatedText>AVISIT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .BASE " Name="BASE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>BASE </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.BASE" Name="BASE" DataType="integer" Length="8">
+<Description><TranslatedText>BASE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .BASE_DT " Name="BASE_DT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>BASE_DT </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.BASE_DT" Name="BASE_DT" DataType="integer" Length="8">
+<Description><TranslatedText>BASE_DT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .CHG " Name="CHG " DataType="integer " Length="8 ">
-        <Description><TranslatedText>CHG </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.CHG" Name="CHG" DataType="integer" Length="8">
+<Description><TranslatedText>CHG</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .LBNRIND " Name="LBNRIND " DataType="text " Length="10 ">
-        <Description><TranslatedText>LBNRIND </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.LBNRIND" Name="LBNRIND" DataType="text" Length="10">
+<Description><TranslatedText>LBNRIND</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .LBSTRESU " Name="LBSTRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>LBSTRESU </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.LBSTRESU" Name="LBSTRESU" DataType="text" Length="20">
+<Description><TranslatedText>LBSTRESU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .PARAM " Name="PARAM " DataType="text " Length="40 ">
-        <Description><TranslatedText>PARAM </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.PARAM" Name="PARAM" DataType="text" Length="40">
+<Description><TranslatedText>PARAM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .PARAMCD " Name="PARAMCD " DataType="text " Length="8 ">
-        <Description><TranslatedText>PARAMCD </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.PARAMCD" Name="PARAMCD" DataType="text" Length="8">
+<Description><TranslatedText>PARAMCD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .TRT01A " Name="TRT01A " DataType="text " Length="50 ">
-        <Description><TranslatedText>TRT01A </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.TRT01A" Name="TRT01A" DataType="text" Length="50">
+<Description><TranslatedText>TRT01A</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .TRTEDT " Name="TRTEDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTEDT </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.TRTEDT" Name="TRTEDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTEDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .TRTSDT " Name="TRTSDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTSDT </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.TRTSDT" Name="TRTSDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTSDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADLB .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADLB.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .AGE " Name="AGE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AGE </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.AGE" Name="AGE" DataType="integer" Length="8">
+<Description><TranslatedText>AGE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .BRTHDT " Name="BRTHDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>BRTHDT </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.BRTHDT" Name="BRTHDT" DataType="integer" Length="8">
+<Description><TranslatedText>BRTHDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .ITTFL " Name="ITTFL " DataType="text " Length="1 ">
-        <Description><TranslatedText>ITTFL </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.ITTFL" Name="ITTFL" DataType="text" Length="1">
+<Description><TranslatedText>ITTFL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .RACE " Name="RACE " DataType="text " Length="5 ">
-        <Description><TranslatedText>RACE </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.RACE" Name="RACE" DataType="text" Length="5">
+<Description><TranslatedText>RACE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .RFICDT " Name="RFICDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>RFICDT </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.RFICDT" Name="RFICDT" DataType="integer" Length="8">
+<Description><TranslatedText>RFICDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .SAFFL " Name="SAFFL " DataType="text " Length="1 ">
-        <Description><TranslatedText>SAFFL </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.SAFFL" Name="SAFFL" DataType="text" Length="1">
+<Description><TranslatedText>SAFFL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .SEX " Name="SEX " DataType="text " Length="1 ">
-        <Description><TranslatedText>SEX </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.SEX" Name="SEX" DataType="text" Length="1">
+<Description><TranslatedText>SEX</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .SUBJID " Name="SUBJID " DataType="text " Length="7 ">
-        <Description><TranslatedText>SUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.SUBJID" Name="SUBJID" DataType="text" Length="7">
+<Description><TranslatedText>SUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .TRT01A " Name="TRT01A " DataType="text " Length="50 ">
-        <Description><TranslatedText>TRT01A </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.TRT01A" Name="TRT01A" DataType="text" Length="50">
+<Description><TranslatedText>TRT01A</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .TRT01P " Name="TRT01P " DataType="text " Length="20 ">
-        <Description><TranslatedText>TRT01P </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.TRT01P" Name="TRT01P" DataType="text" Length="20">
+<Description><TranslatedText>TRT01P</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .TRTDURD " Name="TRTDURD " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTDURD </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.TRTDURD" Name="TRTDURD" DataType="integer" Length="8">
+<Description><TranslatedText>TRTDURD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .TRTEDT " Name="TRTEDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTEDT </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.TRTEDT" Name="TRTEDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTEDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .TRTSDT " Name="TRTSDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTSDT </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.TRTSDT" Name="TRTSDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTSDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADSL .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADSL.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .AVAL " Name="AVAL " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AVAL </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.AVAL" Name="AVAL" DataType="integer" Length="8">
+<Description><TranslatedText>AVAL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .CNSR " Name="CNSR " DataType="integer " Length="8 ">
-        <Description><TranslatedText>CNSR </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.CNSR" Name="CNSR" DataType="integer" Length="8">
+<Description><TranslatedText>CNSR</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .EVENTDT " Name="EVENTDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>EVENTDT </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.EVENTDT" Name="EVENTDT" DataType="integer" Length="8">
+<Description><TranslatedText>EVENTDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .PARAM " Name="PARAM " DataType="text " Length="27 ">
-        <Description><TranslatedText>PARAM </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.PARAM" Name="PARAM" DataType="text" Length="27">
+<Description><TranslatedText>PARAM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .PARAMCD " Name="PARAMCD " DataType="text " Length="6 ">
-        <Description><TranslatedText>PARAMCD </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.PARAMCD" Name="PARAMCD" DataType="text" Length="6">
+<Description><TranslatedText>PARAMCD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .TRT01A " Name="TRT01A " DataType="text " Length="50 ">
-        <Description><TranslatedText>TRT01A </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.TRT01A" Name="TRT01A" DataType="text" Length="50">
+<Description><TranslatedText>TRT01A</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .TRT01P " Name="TRT01P " DataType="text " Length="20 ">
-        <Description><TranslatedText>TRT01P </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.TRT01P" Name="TRT01P" DataType="text" Length="20">
+<Description><TranslatedText>TRT01P</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .TRTEDT " Name="TRTEDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTEDT </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.TRTEDT" Name="TRTEDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTEDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .TRTSDT " Name="TRTSDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTSDT </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.TRTSDT" Name="TRTSDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTSDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADTTE .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADTTE.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .ABLFL " Name="ABLFL " DataType="text " Length="1 ">
-        <Description><TranslatedText>ABLFL </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.ABLFL" Name="ABLFL" DataType="text" Length="1">
+<Description><TranslatedText>ABLFL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .ASTDT " Name="ASTDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>ASTDT </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.ASTDT" Name="ASTDT" DataType="integer" Length="8">
+<Description><TranslatedText>ASTDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .ASTDY " Name="ASTDY " DataType="integer " Length="8 ">
-        <Description><TranslatedText>ASTDY </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.ASTDY" Name="ASTDY" DataType="integer" Length="8">
+<Description><TranslatedText>ASTDY</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .AVAL " Name="AVAL " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AVAL </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.AVAL" Name="AVAL" DataType="integer" Length="8">
+<Description><TranslatedText>AVAL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .AVISIT " Name="AVISIT " DataType="text " Length="7 ">
-        <Description><TranslatedText>AVISIT </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.AVISIT" Name="AVISIT" DataType="text" Length="7">
+<Description><TranslatedText>AVISIT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .BASE " Name="BASE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>BASE </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.BASE" Name="BASE" DataType="integer" Length="8">
+<Description><TranslatedText>BASE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .CHG " Name="CHG " DataType="integer " Length="8 ">
-        <Description><TranslatedText>CHG </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.CHG" Name="CHG" DataType="integer" Length="8">
+<Description><TranslatedText>CHG</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .PARAM " Name="PARAM " DataType="text " Length="40 ">
-        <Description><TranslatedText>PARAM </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.PARAM" Name="PARAM" DataType="text" Length="40">
+<Description><TranslatedText>PARAM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .PARAMCD " Name="PARAMCD " DataType="text " Length="8 ">
-        <Description><TranslatedText>PARAMCD </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.PARAMCD" Name="PARAMCD" DataType="text" Length="8">
+<Description><TranslatedText>PARAMCD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .TRT01A " Name="TRT01A " DataType="text " Length="50 ">
-        <Description><TranslatedText>TRT01A </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.TRT01A" Name="TRT01A" DataType="text" Length="50">
+<Description><TranslatedText>TRT01A</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .TRTEDT " Name="TRTEDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTEDT </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.TRTEDT" Name="TRTEDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTEDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .TRTSDT " Name="TRTSDT " DataType="integer " Length="8 ">
-        <Description><TranslatedText>TRTSDT </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.TRTSDT" Name="TRTSDT" DataType="integer" Length="8">
+<Description><TranslatedText>TRTSDT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.ADVS .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.ADVS.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AEDECOD " Name="AEDECOD " DataType="text " Length="60 ">
-        <Description><TranslatedText>AEDECOD </TranslatedText></Description>
+<ItemDef OID="IT.AE.AEDECOD" Name="AEDECOD" DataType="text" Length="60">
+<Description><TranslatedText>AEDECOD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AEENDTC " Name="AEENDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>AEENDTC </TranslatedText></Description>
+<ItemDef OID="IT.AE.AEENDTC" Name="AEENDTC" DataType="text" Length="10">
+<Description><TranslatedText>AEENDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AEOUT " Name="AEOUT " DataType="text " Length="30 ">
-        <Description><TranslatedText>AEOUT </TranslatedText></Description>
+<ItemDef OID="IT.AE.AEOUT" Name="AEOUT" DataType="text" Length="30">
+<Description><TranslatedText>AEOUT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AEREL " Name="AEREL " DataType="text " Length="15 ">
-        <Description><TranslatedText>AEREL </TranslatedText></Description>
+<ItemDef OID="IT.AE.AEREL" Name="AEREL" DataType="text" Length="15">
+<Description><TranslatedText>AEREL</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AESEQ " Name="AESEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>AESEQ </TranslatedText></Description>
+<ItemDef OID="IT.AE.AESEQ" Name="AESEQ" DataType="integer" Length="8">
+<Description><TranslatedText>AESEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AESER " Name="AESER " DataType="text " Length="1 ">
-        <Description><TranslatedText>AESER </TranslatedText></Description>
+<ItemDef OID="IT.AE.AESER" Name="AESER" DataType="text" Length="1">
+<Description><TranslatedText>AESER</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AESEV " Name="AESEV " DataType="text " Length="10 ">
-        <Description><TranslatedText>AESEV </TranslatedText></Description>
+<ItemDef OID="IT.AE.AESEV" Name="AESEV" DataType="text" Length="10">
+<Description><TranslatedText>AESEV</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AESTDTC " Name="AESTDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>AESTDTC </TranslatedText></Description>
+<ItemDef OID="IT.AE.AESTDTC" Name="AESTDTC" DataType="text" Length="10">
+<Description><TranslatedText>AESTDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .AETERM " Name="AETERM " DataType="text " Length="60 ">
-        <Description><TranslatedText>AETERM </TranslatedText></Description>
+<ItemDef OID="IT.AE.AETERM" Name="AETERM" DataType="text" Length="60">
+<Description><TranslatedText>AETERM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.AE.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.AE.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.AE .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.AE.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMDECOD " Name="CMDECOD " DataType="text " Length="50 ">
-        <Description><TranslatedText>CMDECOD </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMDECOD" Name="CMDECOD" DataType="text" Length="50">
+<Description><TranslatedText>CMDECOD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMDOSE " Name="CMDOSE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>CMDOSE </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMDOSE" Name="CMDOSE" DataType="integer" Length="8">
+<Description><TranslatedText>CMDOSE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMDOSU " Name="CMDOSU " DataType="text " Length="20 ">
-        <Description><TranslatedText>CMDOSU </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMDOSU" Name="CMDOSU" DataType="text" Length="20">
+<Description><TranslatedText>CMDOSU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMENDTC " Name="CMENDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>CMENDTC </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMENDTC" Name="CMENDTC" DataType="text" Length="10">
+<Description><TranslatedText>CMENDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMENRTPT " Name="CMENRTPT " DataType="text " Length="7 ">
-        <Description><TranslatedText>CMENRTPT </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMENRTPT" Name="CMENRTPT" DataType="text" Length="7">
+<Description><TranslatedText>CMENRTPT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMSEQ " Name="CMSEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>CMSEQ </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMSEQ" Name="CMSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>CMSEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMSTDTC " Name="CMSTDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>CMSTDTC </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMSTDTC" Name="CMSTDTC" DataType="text" Length="10">
+<Description><TranslatedText>CMSTDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .CMTRT " Name="CMTRT " DataType="text " Length="50 ">
-        <Description><TranslatedText>CMTRT </TranslatedText></Description>
+<ItemDef OID="IT.CM.CMTRT" Name="CMTRT" DataType="text" Length="50">
+<Description><TranslatedText>CMTRT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.CM.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.CM.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.CM .USUBJID " Name="USUBJID " DataType="text " Length="19 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.CM.USUBJID" Name="USUBJID" DataType="text" Length="19">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .ARM " Name="ARM " DataType="text " Length="20 ">
-        <Description><TranslatedText>ARM </TranslatedText></Description>
+<ItemDef OID="IT.DM.ARM" Name="ARM" DataType="text" Length="20">
+<Description><TranslatedText>ARM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .ARMCD " Name="ARMCD " DataType="text " Length="8 ">
-        <Description><TranslatedText>ARMCD </TranslatedText></Description>
+<ItemDef OID="IT.DM.ARMCD" Name="ARMCD" DataType="text" Length="8">
+<Description><TranslatedText>ARMCD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .BRTHDTC " Name="BRTHDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>BRTHDTC </TranslatedText></Description>
+<ItemDef OID="IT.DM.BRTHDTC" Name="BRTHDTC" DataType="text" Length="10">
+<Description><TranslatedText>BRTHDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.DM.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .RACE " Name="RACE " DataType="text " Length="5 ">
-        <Description><TranslatedText>RACE </TranslatedText></Description>
+<ItemDef OID="IT.DM.RACE" Name="RACE" DataType="text" Length="5">
+<Description><TranslatedText>RACE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .RFICDTC " Name="RFICDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>RFICDTC </TranslatedText></Description>
+<ItemDef OID="IT.DM.RFENDTC" Name="RFENDTC" DataType="text" Length="10">
+<Description><TranslatedText>RFENDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .SEX " Name="SEX " DataType="text " Length="1 ">
-        <Description><TranslatedText>SEX </TranslatedText></Description>
+<ItemDef OID="IT.DM.RFICDTC" Name="RFICDTC" DataType="text" Length="10">
+<Description><TranslatedText>RFICDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.DM.RFPENDTC" Name="RFPENDTC" DataType="text" Length="10">
+<Description><TranslatedText>RFPENDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .SUBJID " Name="SUBJID " DataType="text " Length="7 ">
-        <Description><TranslatedText>SUBJID </TranslatedText></Description>
+<ItemDef OID="IT.DM.RFSTDTC" Name="RFSTDTC" DataType="text" Length="10">
+<Description><TranslatedText>RFSTDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.DM .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.DM.SEX" Name="SEX" DataType="text" Length="1">
+<Description><TranslatedText>SEX</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.DM.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGDTC " Name="EGDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>EGDTC </TranslatedText></Description>
+<ItemDef OID="IT.DM.SUBJID" Name="SUBJID" DataType="text" Length="7">
+<Description><TranslatedText>SUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGORRES " Name="EGORRES " DataType="text " Length="20 ">
-        <Description><TranslatedText>EGORRES </TranslatedText></Description>
+<ItemDef OID="IT.DM.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGORRESU " Name="EGORRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>EGORRESU </TranslatedText></Description>
+<ItemDef OID="IT.DS.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGSEQ " Name="EGSEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>EGSEQ </TranslatedText></Description>
+<ItemDef OID="IT.DS.DSCAT" Name="DSCAT" DataType="text" Length="40">
+<Description><TranslatedText>DSCAT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGSTRESC " Name="EGSTRESC " DataType="text " Length="20 ">
-        <Description><TranslatedText>EGSTRESC </TranslatedText></Description>
+<ItemDef OID="IT.DS.DSDECOD" Name="DSDECOD" DataType="text" Length="80">
+<Description><TranslatedText>DSDECOD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGSTRESN " Name="EGSTRESN " DataType="integer " Length="8 ">
-        <Description><TranslatedText>EGSTRESN </TranslatedText></Description>
+<ItemDef OID="IT.DS.DSSCAT" Name="DSSCAT" DataType="text" Length="40">
+<Description><TranslatedText>DSSCAT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGSTRESU " Name="EGSTRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>EGSTRESU </TranslatedText></Description>
+<ItemDef OID="IT.DS.DSSEQ" Name="DSSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>DSSEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGTEST " Name="EGTEST " DataType="text " Length="40 ">
-        <Description><TranslatedText>EGTEST </TranslatedText></Description>
+<ItemDef OID="IT.DS.DSSTDTC" Name="DSSTDTC" DataType="text" Length="10">
+<Description><TranslatedText>DSSTDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .EGTESTCD " Name="EGTESTCD " DataType="text " Length="8 ">
-        <Description><TranslatedText>EGTESTCD </TranslatedText></Description>
+<ItemDef OID="IT.DS.DSTERM" Name="DSTERM" DataType="text" Length="80">
+<Description><TranslatedText>DSTERM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.DS.EPOCH" Name="EPOCH" DataType="text" Length="20">
+<Description><TranslatedText>EPOCH</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EG .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.DS.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.DS.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .EXDOSE " Name="EXDOSE " DataType="integer " Length="8 ">
-        <Description><TranslatedText>EXDOSE </TranslatedText></Description>
+<ItemDef OID="IT.EG.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .EXDOSU " Name="EXDOSU " DataType="text " Length="20 ">
-        <Description><TranslatedText>EXDOSU </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGDTC" Name="EGDTC" DataType="text" Length="10">
+<Description><TranslatedText>EGDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .EXENDTC " Name="EXENDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>EXENDTC </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGORRES" Name="EGORRES" DataType="text" Length="20">
+<Description><TranslatedText>EGORRES</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .EXSEQ " Name="EXSEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>EXSEQ </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGORRESU" Name="EGORRESU" DataType="text" Length="20">
+<Description><TranslatedText>EGORRESU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .EXSTDTC " Name="EXSTDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>EXSTDTC </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGSEQ" Name="EGSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>EGSEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .EXTRT " Name="EXTRT " DataType="text " Length="50 ">
-        <Description><TranslatedText>EXTRT </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGSTRESC" Name="EGSTRESC" DataType="text" Length="20">
+<Description><TranslatedText>EGSTRESC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGSTRESN" Name="EGSTRESN" DataType="integer" Length="8">
+<Description><TranslatedText>EGSTRESN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.EX .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGSTRESU" Name="EGSTRESU" DataType="text" Length="20">
+<Description><TranslatedText>EGSTRESU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGTEST" Name="EGTEST" DataType="text" Length="40">
+<Description><TranslatedText>EGTEST</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBCAT " Name="LBCAT " DataType="text " Length="20 ">
-        <Description><TranslatedText>LBCAT </TranslatedText></Description>
+<ItemDef OID="IT.EG.EGTESTCD" Name="EGTESTCD" DataType="text" Length="8">
+<Description><TranslatedText>EGTESTCD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBDTC " Name="LBDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>LBDTC </TranslatedText></Description>
+<ItemDef OID="IT.EG.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBORRES " Name="LBORRES " DataType="text " Length="20 ">
-        <Description><TranslatedText>LBORRES </TranslatedText></Description>
+<ItemDef OID="IT.EG.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBORRESU " Name="LBORRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>LBORRESU </TranslatedText></Description>
+<ItemDef OID="IT.EG.VISIT" Name="VISIT" DataType="text" Length="7">
+<Description><TranslatedText>VISIT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBSEQ " Name="LBSEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>LBSEQ </TranslatedText></Description>
+<ItemDef OID="IT.EG.VISITNUM" Name="VISITNUM" DataType="integer" Length="8">
+<Description><TranslatedText>VISITNUM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBSTRESC " Name="LBSTRESC " DataType="text " Length="20 ">
-        <Description><TranslatedText>LBSTRESC </TranslatedText></Description>
+<ItemDef OID="IT.EX.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBSTRESN " Name="LBSTRESN " DataType="integer " Length="8 ">
-        <Description><TranslatedText>LBSTRESN </TranslatedText></Description>
+<ItemDef OID="IT.EX.EXDOSE" Name="EXDOSE" DataType="integer" Length="8">
+<Description><TranslatedText>EXDOSE</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBSTRESU " Name="LBSTRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>LBSTRESU </TranslatedText></Description>
+<ItemDef OID="IT.EX.EXDOSU" Name="EXDOSU" DataType="text" Length="20">
+<Description><TranslatedText>EXDOSU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBTEST " Name="LBTEST " DataType="text " Length="40 ">
-        <Description><TranslatedText>LBTEST </TranslatedText></Description>
+<ItemDef OID="IT.EX.EXENDTC" Name="EXENDTC" DataType="text" Length="10">
+<Description><TranslatedText>EXENDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .LBTESTCD " Name="LBTESTCD " DataType="text " Length="8 ">
-        <Description><TranslatedText>LBTESTCD </TranslatedText></Description>
+<ItemDef OID="IT.EX.EXSEQ" Name="EXSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>EXSEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.EX.EXSTDTC" Name="EXSTDTC" DataType="text" Length="10">
+<Description><TranslatedText>EXSTDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.EX.EXTRT" Name="EXTRT" DataType="text" Length="50">
+<Description><TranslatedText>EXTRT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.LB .VISIT " Name="VISIT " DataType="text " Length="7 ">
-        <Description><TranslatedText>VISIT </TranslatedText></Description>
+<ItemDef OID="IT.EX.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.EX.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .MHSEQ " Name="MHSEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>MHSEQ </TranslatedText></Description>
+<ItemDef OID="IT.LB.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .MHSTDTC " Name="MHSTDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>MHSTDTC </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBCAT" Name="LBCAT" DataType="text" Length="20">
+<Description><TranslatedText>LBCAT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .MHTERM " Name="MHTERM " DataType="text " Length="60 ">
-        <Description><TranslatedText>MHTERM </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBDTC" Name="LBDTC" DataType="text" Length="10">
+<Description><TranslatedText>LBDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBORRES" Name="LBORRES" DataType="text" Length="20">
+<Description><TranslatedText>LBORRES</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.MH .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBORRESU" Name="LBORRESU" DataType="text" Length="20">
+<Description><TranslatedText>LBORRESU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.QC_REPORT .CHECK_ID " Name="CHECK_ID " DataType="text " Length="10 ">
-        <Description><TranslatedText>CHECK_ID </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBSEQ" Name="LBSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>LBSEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.QC_REPORT .DOMAIN " Name="DOMAIN " DataType="text " Length="10 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBSTRESC" Name="LBSTRESC" DataType="text" Length="20">
+<Description><TranslatedText>LBSTRESC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.QC_REPORT .N_FAIL " Name="N_FAIL " DataType="integer " Length="8 ">
-        <Description><TranslatedText>N_FAIL </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBSTRESN" Name="LBSTRESN" DataType="integer" Length="8">
+<Description><TranslatedText>LBSTRESN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.QC_REPORT .RULE " Name="RULE " DataType="text " Length="50 ">
-        <Description><TranslatedText>RULE </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBSTRESU" Name="LBSTRESU" DataType="text" Length="20">
+<Description><TranslatedText>LBSTRESU</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.QC_REPORT .STATUS " Name="STATUS " DataType="text " Length="10 ">
-        <Description><TranslatedText>STATUS </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBTEST" Name="LBTEST" DataType="text" Length="40">
+<Description><TranslatedText>LBTEST</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .DOMAIN " Name="DOMAIN " DataType="text " Length="2 ">
-        <Description><TranslatedText>DOMAIN </TranslatedText></Description>
+<ItemDef OID="IT.LB.LBTESTCD" Name="LBTESTCD" DataType="text" Length="8">
+<Description><TranslatedText>LBTESTCD</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .STUDYID " Name="STUDYID " DataType="text " Length="8 ">
-        <Description><TranslatedText>STUDYID </TranslatedText></Description>
+<ItemDef OID="IT.LB.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .USUBJID " Name="USUBJID " DataType="text " Length="200 ">
-        <Description><TranslatedText>USUBJID </TranslatedText></Description>
+<ItemDef OID="IT.LB.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VISIT " Name="VISIT " DataType="text " Length="7 ">
-        <Description><TranslatedText>VISIT </TranslatedText></Description>
+<ItemDef OID="IT.LB.VISIT" Name="VISIT" DataType="text" Length="7">
+<Description><TranslatedText>VISIT</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSDTC " Name="VSDTC " DataType="text " Length="10 ">
-        <Description><TranslatedText>VSDTC </TranslatedText></Description>
+<ItemDef OID="IT.LB.VISITNUM" Name="VISITNUM" DataType="integer" Length="8">
+<Description><TranslatedText>VISITNUM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSORRES " Name="VSORRES " DataType="text " Length="200 ">
-        <Description><TranslatedText>VSORRES </TranslatedText></Description>
+<ItemDef OID="IT.MH.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSORRESU " Name="VSORRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>VSORRESU </TranslatedText></Description>
+<ItemDef OID="IT.MH.MHSEQ" Name="MHSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>MHSEQ</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSSEQ " Name="VSSEQ " DataType="integer " Length="8 ">
-        <Description><TranslatedText>VSSEQ </TranslatedText></Description>
+<ItemDef OID="IT.MH.MHSTDTC" Name="MHSTDTC" DataType="text" Length="10">
+<Description><TranslatedText>MHSTDTC</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSSTRESN " Name="VSSTRESN " DataType="integer " Length="8 ">
-        <Description><TranslatedText>VSSTRESN </TranslatedText></Description>
+<ItemDef OID="IT.MH.MHTERM" Name="MHTERM" DataType="text" Length="60">
+<Description><TranslatedText>MHTERM</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSSTRESU " Name="VSSTRESU " DataType="text " Length="20 ">
-        <Description><TranslatedText>VSSTRESU </TranslatedText></Description>
+<ItemDef OID="IT.MH.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSTEST " Name="VSTEST " DataType="text " Length="40 ">
-        <Description><TranslatedText>VSTEST </TranslatedText></Description>
+<ItemDef OID="IT.MH.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
       </ItemDef>
-      <ItemDef OID="IT.VS .VSTESTCD " Name="VSTESTCD " DataType="text " Length="8 ">
-        <Description><TranslatedText>VSTESTCD </TranslatedText></Description>
+<ItemDef OID="IT.QC_REPORT.CHECK_ID" Name="CHECK_ID" DataType="text" Length="10">
+<Description><TranslatedText>CHECK_ID</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.QC_REPORT.DOMAIN" Name="DOMAIN" DataType="text" Length="10">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.QC_REPORT.N_FAIL" Name="N_FAIL" DataType="integer" Length="8">
+<Description><TranslatedText>N_FAIL</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.QC_REPORT.RULE" Name="RULE" DataType="text" Length="50">
+<Description><TranslatedText>RULE</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.QC_REPORT.STATUS" Name="STATUS" DataType="text" Length="10">
+<Description><TranslatedText>STATUS</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.SVENDTC" Name="SVENDTC" DataType="text" Length="10">
+<Description><TranslatedText>SVENDTC</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.SVSTDTC" Name="SVSTDTC" DataType="text" Length="10">
+<Description><TranslatedText>SVSTDTC</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.VISIT" Name="VISIT" DataType="text" Length="40">
+<Description><TranslatedText>VISIT</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.VISITDY" Name="VISITDY" DataType="integer" Length="8">
+<Description><TranslatedText>VISITDY</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.SV.VISITNUM" Name="VISITNUM" DataType="integer" Length="8">
+<Description><TranslatedText>VISITNUM</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.DOMAIN" Name="DOMAIN" DataType="text" Length="2">
+<Description><TranslatedText>DOMAIN</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.STUDYID" Name="STUDYID" DataType="text" Length="8">
+<Description><TranslatedText>STUDYID</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.USUBJID" Name="USUBJID" DataType="text" Length="200">
+<Description><TranslatedText>USUBJID</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VISIT" Name="VISIT" DataType="text" Length="7">
+<Description><TranslatedText>VISIT</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VISITNUM" Name="VISITNUM" DataType="integer" Length="8">
+<Description><TranslatedText>VISITNUM</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSDTC" Name="VSDTC" DataType="text" Length="10">
+<Description><TranslatedText>VSDTC</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSORRES" Name="VSORRES" DataType="text" Length="200">
+<Description><TranslatedText>VSORRES</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSORRESU" Name="VSORRESU" DataType="text" Length="20">
+<Description><TranslatedText>VSORRESU</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSSEQ" Name="VSSEQ" DataType="integer" Length="8">
+<Description><TranslatedText>VSSEQ</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSSTRESN" Name="VSSTRESN" DataType="integer" Length="8">
+<Description><TranslatedText>VSSTRESN</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSSTRESU" Name="VSSTRESU" DataType="text" Length="20">
+<Description><TranslatedText>VSSTRESU</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSTEST" Name="VSTEST" DataType="text" Length="40">
+<Description><TranslatedText>VSTEST</TranslatedText></Description>
+      </ItemDef>
+<ItemDef OID="IT.VS.VSTESTCD" Name="VSTESTCD" DataType="text" Length="8">
+<Description><TranslatedText>VSTESTCD</TranslatedText></Description>
       </ItemDef>
     </MetaDataVersion>
   </Study>

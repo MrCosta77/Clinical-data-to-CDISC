@@ -12,7 +12,7 @@ This project is designed to showcase clinical data engineering, defensive SAS pr
 ## 📂 Target Architecture
 The pipeline follows a rule-based clinical data transformation approach, culminating in survival analysis modeling and regulatory-grade presentation layers:
 
-RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS, CM, MH, EG) ──▶ ADaM (ADSL, ADAE, ADVS, ADLB, ADTTE) ──▶ QC Framework ──▶ TLFs & Define-XML
+RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS, CM, MH, EG, SV, DS) ──▶ ADaM (ADSL, ADAE, ADVS, ADLB, ADTTE) ──▶ QC Framework ──▶ TLFs & Define-XML
 
 ## 🛠️ Development Milestones
 
@@ -21,6 +21,7 @@ RAW EDC ──▶ SDTM (DM, AE, EX, LB, VS, CM, MH, EG) ──▶ ADaM (ADSL, AD
 - **VS & LB:** Horizontal-to-vertical unpivoting (wide to long), conditional dictionary mapping, and parameter standardization.
 - **AE, EX & CM:** Sequential numbering, clinical exposure mapping, and concomitant medications standardization.
 - **MH & EG:** Retrospective medical history mapping and electrocardiogram signal standardization.
+- **SV & DS:** Actual subject visits and final study disposition, tied to the subject reference period in DM.
 - **Architecture Validation:** Implementation of `retain` statements to ensure strict CDISC column ordering (Identifiers first).
 
 ### Phase 2: ADaM Derivation & Clinical Logic
@@ -45,7 +46,8 @@ To run this project locally or in SAS OnDemand for Academics (SODA):
    `git clone https://github.com/your-username/Clinical-data-to-cdisc.git`
 
 2. **Generate the Raw Data:**
-   Run the Python engine to simulate the imperfect clinical data extraction.
+   Run both Python generators in order. Their fixed random seeds reproduce the
+   same cohort and all study events share the subject timeline defined in DM.
    `python scripts/generate_raw_edc.py`
    `python scripts/generate_extra_edc.py`
 
@@ -57,8 +59,8 @@ To run this project locally or in SAS OnDemand for Academics (SODA):
 
 4. **Execute the Pipeline (Strict Execution Order):**
    In clinical programming, the ETL flow relies on strict hierarchical dependencies. You must execute the SAS programs in this exact order:
-   * **Phase 1 (Raw to SDTM):** Run all `sdtm_*.sas` programs (order between them does not matter).
+   * **Phase 1 (Raw to SDTM):** Run `sdtm_dm.sas`, then the remaining `sdtm_*.sas` programs, including `sdtm_sv.sas` and `sdtm_ds.sas`.
    * **Phase 2 (Core ADaM):** Run `adam_adsl.sas`. *(Crucial: This generates the Safety/ITT populations and treatment dates needed by all subsequent domains).*
    * **Phase 3 (Analysis Domains):** Run `adam_adae.sas`, `adam_advs.sas`, and `adam_adlb.sas`.
    * **Phase 4 (Survival Analysis):** Run `adam_adtte.sas`. *(Note: This explicitly depends on the derived ADAE dataset).*
-   * **Phase 5 (Reporting & Validation):** Run `tlf_table1.sas`, `tlf_figure1.sas`, `qc_core.sas`, and finally `generate_define.sas` to output the XML metadata dictionary.
+   * **Phase 5 (Reporting & Validation):** Run `tlf_table1.sas`, `tlf_figure1.sas`, `qc_core.sas` (25 checks), and finally `generate_define.sas` to output the XML metadata dictionary.

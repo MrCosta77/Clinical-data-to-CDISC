@@ -193,6 +193,78 @@ proc sql noprint;
       and upcase(name) in ('SUBJECT', 'CONDITION', 'DIAGNOSIS_DATE');
 quit;
 
+/* RULE 20: DM reference period must be complete, ISO 8601, and ordered */
+proc sql noprint;
+    create table chk_dm02 as
+    select 'SDTM-014' as CHECK_ID, 'DM' as DOMAIN, 'DM reference dates complete and ordered' as RULE,
+           count(*) as N_FAIL
+    from sdtm.dm
+    where missing(RFICDTC) or missing(RFSTDTC) or missing(RFENDTC) or missing(RFPENDTC)
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(RFICDTC)) = 0
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(RFSTDTC)) = 0
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(RFENDTC)) = 0
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(RFPENDTC)) = 0
+       or RFSTDTC < RFICDTC or RFENDTC < RFSTDTC or RFPENDTC ne RFENDTC;
+quit;
+
+/* RULE 21: SV subjects must exist in DM */
+proc sql noprint;
+    create table chk_sv01 as
+    select 'SDTM-015' as CHECK_ID, 'SV' as DOMAIN, 'Every SV.USUBJID exists in DM' as RULE,
+           count(*) as N_FAIL
+    from sdtm.sv s left join sdtm.dm d on s.USUBJID = d.USUBJID
+    where d.USUBJID is null;
+quit;
+
+/* RULE 22: one SV row per subject and visit number */
+proc sql noprint;
+    create table chk_sv02 as
+    select 'SDTM-016' as CHECK_ID, 'SV' as DOMAIN, 'USUBJID and VISITNUM must be unique' as RULE,
+           count(*) as N_FAIL
+    from (select USUBJID, VISITNUM from sdtm.sv
+          group by USUBJID, VISITNUM having count(*) ne 1);
+quit;
+
+/* RULE 23: actual visits must be valid and within the DM reference period */
+proc sql noprint;
+    create table chk_sv03 as
+    select 'SDTM-017' as CHECK_ID, 'SV' as DOMAIN, 'SV dates valid and inside reference period' as RULE,
+           count(*) as N_FAIL
+    from sdtm.sv s inner join sdtm.dm d on s.USUBJID = d.USUBJID
+    where missing(s.VISITNUM) or missing(s.VISIT) or missing(s.SVSTDTC) or missing(s.SVENDTC)
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(s.SVSTDTC)) = 0
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(s.SVENDTC)) = 0
+       or s.SVENDTC < s.SVSTDTC
+       or s.SVSTDTC < d.RFSTDTC or s.SVENDTC > d.RFENDTC;
+quit;
+
+/* RULE 24: DS must contain exactly one final disposition for every DM subject */
+proc sql noprint;
+    create table chk_ds01 as
+    select 'SDTM-018' as CHECK_ID, 'DS' as DOMAIN, 'Exactly one final DS record per DM subject' as RULE,
+           count(*) as N_FAIL
+    from (
+        select d.USUBJID, count(s.USUBJID) as N_DS
+        from sdtm.dm d left join sdtm.ds s on d.USUBJID = s.USUBJID
+        group by d.USUBJID having calculated N_DS ne 1
+        union all
+        select s.USUBJID, count(*) as N_DS
+        from sdtm.ds s left join sdtm.dm d on s.USUBJID = d.USUBJID
+        where d.USUBJID is null group by s.USUBJID
+    );
+quit;
+
+/* RULE 25: DS final date must agree with the end of subject participation */
+proc sql noprint;
+    create table chk_ds02 as
+    select 'SDTM-019' as CHECK_ID, 'DS' as DOMAIN, 'DS date matches DM participation end' as RULE,
+           count(*) as N_FAIL
+    from sdtm.ds s inner join sdtm.dm d on s.USUBJID = d.USUBJID
+    where missing(s.DSDECOD) or missing(s.DSSTDTC)
+       or prxmatch('/^\d{4}-\d{2}-\d{2}$/', strip(s.DSSTDTC)) = 0
+       or s.DSSTDTC ne d.RFPENDTC;
+quit;
+
 
 /* -------------------------------------------------------------------
    2. CONSOLIDATE RESULTS (Generate Permanent Data)
@@ -204,7 +276,8 @@ data adam.qc_report;
     set chk_adsl01 chk_adae01 chk_advs01 chk_adlb01 chk_dm01 
         chk_ae01 chk_ex01 chk_lb01 chk_vs01 chk_adsl02 chk_adtte01
         chk_eg01 chk_eg02 chk_eg03 chk_eg04
-        chk_mh01 chk_mh02 chk_mh03 chk_mh04;
+        chk_mh01 chk_mh02 chk_mh03 chk_mh04 chk_dm02
+        chk_sv01 chk_sv02 chk_sv03 chk_ds01 chk_ds02;
         
     if N_FAIL = 0 then STATUS = "PASS";
     else STATUS = "FAIL";
@@ -241,7 +314,7 @@ quit;
     %end;
     %else %do;
         %put NOTE: ---------------------------------------------------;
-        %put NOTE: QC VALIDATION COMPLETE. ALL 19 CHECKS PASSED SUCCESSFULLY.;
+        %put NOTE: QC VALIDATION COMPLETE. ALL 25 CHECKS PASSED SUCCESSFULLY.;
         %put NOTE: ---------------------------------------------------;
     %end;
 %mend;
@@ -251,7 +324,7 @@ quit;
 /* ---------------------------------------------------------
    EXPORT QC REPORT TO RTF FOR GITHUB PORTFOLIO
 --------------------------------------------------------- */
-ods rtf file="&project_path./qc_report.rtf" style=Journal; /* <-- Removido o /tlfs/ */
+ods rtf file="&project_path./tlfs/qc_report.rtf" style=Journal;
 
 title "Automated Quality Control (QC) Report";
 proc print data=adam.qc_report noobs;
